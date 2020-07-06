@@ -40,7 +40,7 @@ const useSemiPersistentState = (
 };
 ~~~~~~~
 
-Adding types to the function's arguments is more about Javascript than React. We are telling the function to expect two arguments, which are JavaScript string primitives. Also, we can tell the function to return an array (`[]`) with a `string` (state), and tell functions like `state updater function` that take a `value` to return nothing (`void`):
+Adding types to the function's arguments is more about JavaScript than React. We are telling the function to expect two arguments, which are JavaScript string primitives. Also, we can tell the function to return an array (`[]`) with a `string` (state), and tell functions like `state updater function` that take a `value` to return nothing (`void`):
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~

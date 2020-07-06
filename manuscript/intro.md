@@ -1,79 +1,79 @@
-# Foreword
+# Prefacio
 
-The Road to React teaches the fundamentals of React. You will build a real-world application in plain React without complicated tooling. Everything from project setup to deployment on a server will be explained for you. The book comes with additional referenced reading material and exercises with each chapter. After reading the book, you will be able to build your own applications in React. The material is kept up to date by myself and the community.
+El Camino hacia React enseña los fundamentos por React. Construirás una aplicación del mundo real en React sin herramientas complicadas. Todo te será explicado, desde la configuración del proyecto hasta el despliegue a un servidor. El libro viene con material de referencia adicional y ejercicios con cada capítulo. Después de leer el libro, serás capaz de construir tus propias aplicaciones en React. El material es mantenido al día por mí mismo y por la comunidad.
 
-In the Road to React, I offer a foundation before you dive into the broader React ecosystem. The concepts will have less tooling and less external state management, but a lot of information about React. It explains general concepts, patterns, and best practices in a real world React application.
+En "El Camino hacia React", te ofrezco fundamentos antes de sumergirte en un ecosistema más amplio de React. Los conceptos tendrán menos herramientas y menor gestión de estados extenos, pero mucha información acerca de React. Esto explica conceptos generales, patrones y mejores prácticas en una aplicación React del mundo real.
 
-Essentially, you will learn to build your own React application from scratch, with features like pagination, client-side and server-side searching, and advanced interactions like sorting. I hope this book captures my enthusiasm for React and JavaScript, and that it helps you get started with it.
+Escencialmente, aprenderás a construir tu propia aplicación React desde cero, con características como paginación, búsqueda del lado del cliente y del servidor, así como interacciones avanzadas como ordenamiento. Espero que este libro capture mi entusiasmo por React y JavaScript, y que esto te ayude a empezar.
 
-## About the Author
+## Acerca del autor
 
-I am a German software and web engineer dedicated to learning and teaching programming in JavaScript. After obtaining my Master's Degree in computer science, I continued learning on my own. I gained experience from the startup world, where I used JavaScript intensively during both my professional life and spare time, which eventually led to a desire to teach others about these topics.
+Soy un ingeniero de software y web dedicado a aprender y enseñar programación con JavaScript. Después de obtener mi grado de maestría en ciencias computacionales, continué aprendiendo por mi cuenta. Gané experiencia desde el mundo de las _startups_, donde usé JavaScript intensivamente durante mi vida profesional y tiempo libre, lo cual eventualmente me llevó a desear enseñar a otros acerca de estos temas.
 
-For a few years, I worked closely with an exceptional team of engineers at a company called Small Improvements, developing large scale applications. The company offered a SaaS product that enables customers to give feedback to businesses. This application was developed using JavaScript on its frontend, and Java as its backend. The first iteration of Small Improvements' frontend was written in Java with the Wicket Framework and jQuery. When the first generation of SPAs became popular, the company migrated to Angular 1.x for its frontend application. After using Angular for over two years, it became clear that Angular wasn't the best solution to work with state intense applications, so they made the jump to React and Redux. This enabled it to operate on a large scale successfully.
+Por algunos años, trabajé muy de cerca con un equipo excepcional de ingenieros en una compañía llamada _Small Improvements_, desarrollando aplicaciones a gran escala. La compañía ofrecía un producto SaaS que permite a los usuarios dar retroalimentación a las empresas. Esta aplicación fue desarrollada usando JavaScript en el _frontend_ y Java en el _backend_. La primera iteración de _Small Improvements_ para el _frontend_ fue escrita en Java con el framework _Wicket_ y _jQuery_. Cuando la primera generación de aplicaciones de página única, por sus siglas en inglés _SPAs_, se volvió popular, la compañía migró a Angular 1.x. Después de usar Angular por dos años, estaba claro que Angular no era la mejor solución para trabajar con aplicaciones que requirieran una gestión de estado intensa, así que decidieron hacer el cambio a React y Redux. Esto le permitió operar exitosamente a gran escala.
 
-During my time in the company, I regularly wrote articles about web development on my website. I received great feedback from people learning from my articles which allowed me to improve my writing and teaching style. Article after article, I grew my ability to teach others. I felt that my first articles were packed with too much information, quite overwhelming for students, but I improved by focusing on one subject at a time.
+Durante mi tiempo en la empresa, regularmente escribía artículos sobre desarrollo web en mi sitio web. Recibí excelentes comentarios de personas que aprendieron de mis artículos, lo que me permitió mejorar mi estilo de escritura y enseñanza. Artículo tras artículo, desarrollé mi habilidad para enseñar a otros. Sentí que mis primeros artículos estaban llenos de demasiada información, bastante abrumadores para los estudiantes, pero mejoré al enfocarme en un tema a la vez.
 
-Currently, I am a self-employed software engineer and educator. I find it a fulfilling pastime to see students thrive by giving them clear objectives and short feedback loops. You can find more information about me and ways to support and work with me on my [website](https://www.robinwieruch.de/about).
+Actualmente soy ingeniero de software y educador autónomo. Encuentro un pasatiempo gratificante al ver a los estudiantes prosperar al darles objetivos claros y ciclos de retroalimentación inmediata. Puedes encontrar más información sobre mí y formas de apoyarme y trabajar conmigo en mi [sitio web](https://www.robinwieruch.de/about).
 
-## FAQ
+## Preguntas frecuentes
 
-**How to get updates?**
+**¿Cómo puedo recibir actualizaciones?**
 
-I have two channels where I share updates about my content. You can [subscribe to updates by email](https://www.getrevue.co/profile/rwieruch) or [follow me on Twitter](https://twitter.com/rwieruch). Regardless of the channel, my objective is to only share quality content. Once you receive notification the book has changed, you can download a new version of it from my website.
+Tengo dos medios por donde comparto actualizaciones sobre mi contenido. Puedes [suscribirte a las actualizaciones por correo electrónico](https://www.getrevue.co/profile/rwieruch) o [seguirme en Twitter](https://twitter.com/rwieruch). Independientemente del medio, mi objetivo es compartir solo contenido de calidad. Una vez que recibas la notificación de que el libro ha cambiado, puedes descargar una nueva versión desde mi sitio web.
 
-**Is the learning material up-to-date?**
+**¿El material de aprendizaje está actualizado?**
 
-Programming books are usually outdated soon after their release, but since this book is self-published, I can update it as needed whenever a new version of something related to this book gets released.
+Los libros de programación generalmente están desactualizados poco después de su lanzamiento, pero dado que este libro se publica automáticamente, puedo actualizarlo según sea necesario cada vez que se publique una nueva versión de algo relacionado con este libro.
 
-**Can I get a digital copy of the book if I bought it on Amazon?**
+**¿Puedo obtener una copia digital del libro si lo compré en Amazon?**
 
-If you have bought the book on Amazon, you may have seen that the book is available on my website too. Since I use Amazon as one way to monetize my often free content, I honestly thank you for your support and invite you to sign up for my courses on [my website](https://www.robinwieruch.de/). After creating an account there, write me an email about your purchase with a receipt from Amazon, so that I can unlock the content for you. With an account on my platform, you always have access to the latest version of the book.
+Si has comprado el libro en Amazon, es posible que hayas visto que el libro también está disponible en mi sitio web. Dado que uso Amazon como una forma de monetizar mi contenido a menudo gratuito, sinceramente te agradezco el apoyo y te invito a inscribirte a mis cursos en [mi sitio web](https://www.robinwieruch.de/). Después de crear una cuenta allí, escríbeme un correo electrónico de tu compra con el recibo de Amazon, para que pueda desbloquear el contenido por ti. Con una cuenta en mi plataforma, siempre tendrás acceso a la última versión del libro.
 
-Also, if you have purchased a print book, make sure to take notes in the book. It was my intention to keep the printed book extra large, for the sake of giving larger code snippets enough space, but also for giving you enough space to work with it.
+Además, si has comprado un libro impreso, asegúrate de tomar notas en el libro. Tuve la intención de mantener el libro impreso de tamaño extra grande, con el fin de dar a los fragmentos de código más grandes suficiente espacio, pero también para darte suficiente espacio para trabajar con él.
 
-**How can I get help while reading the book?**
+**¿Cómo puedo obtener ayuda mientras leo el libro?**
 
-The book has a community of learners who help each other and for people who are reading along. You can join the community to get help, or to help others, as helping others may help you internalize your own understanding. Just follow the navigation to my courses on my [website](https://www.robinwieruch.de/), sign up there, and navigate to joining the community.
+El libro tiene una comunidad de estudiantes quienes se ayudan entre sí así como a las personas que está leyendo. Puedes unirte a la comunidad para obtener ayuda o para ayudar a otros, ya que ayudar a otros puede ayudarte a internalizar tu propia comprensión. Simplemente sigue el enlace a mis cursos en mi [sitio web](https://www.robinwieruch.de/), regístrate allí y navega para unirte a la comunidad.
 
-**Can I help to improve the content?**
+**¿Puedo ayudar a mejorar el contenido?**
 
-If you have feedback, shoot me an email and I will take your suggestions into consideration. Don't expect any replies for bug tracking or troubleshoots though, because that's what's the community for.
+Si tienes comentarios, envíame un correo electrónico y tomaré en cuenta tus sugerencias. Sin embargo, no esperes ninguna respuesta respecto a  seguimiento de errores o problemas en el código, ya que para eso es la comunidad.
 
-**What do I do if I encounter a bug?**
+**¿Qué hago si encuentro un error?**
 
-If you encounter any bug in the code, you should find a URL to the current GitHub project at the end of each section. Feel free to open a GitHub issue there. Your help is very much appreciated!
+Si encuentras algún error en el código, deberías encontrar una URL en el proyecto actual de GitHub al final de cada sección. No dudes en abrir un _issue_ en GitHub.
 
-**How to support the project?**
+**¿Cómo apoyar el proyecto?**
 
-If you find my lessons useful and would like to contribute, seek my website's [about page](https://www.robinwieruch.de/about/) for information about how to offer support. It is also very helpful for my readers spread the word about how my books helped them, so others might discover ways to improve their web development skills. Contributing through any of the provided channels gives me the freedom to create in-depth courses, and to continue offering free material.
+Si consideras que mis lecciones son útiles y te gustaría contribuir, busca la página [acerca de](https://www.robinwieruch.de/about/) de mi sitio web para obtener información acerca de cómo ofrecer apoyo. También es muy útil para mis lectores leer acerca de cómo mis libros los han ayudado, así otros pueden descubrir formas de mejorar sus habilidades de desarrollo web. Contribuir a través de cualquiera de los medios provistos, me permite crear cursos con mayor nivel de detalle y continuar ofreciendo material gratuito.
 
-**What's your motivation behind the book?**
+**¿Cuál es tu motivación para escribir el libro?**
 
-I want to teach about this topic consistently. I often find materials online that don't receive updates, or only applies to a small part of a topic. Sometimes people struggle to find consistent and up-to-date resources to learn from. I want to provide this consistent and up-to-date learning experience. Also, I hope I can support the less fortunate with my projects by giving them the content for free or by [having other impacts](https://www.robinwieruch.de/giving-back-by-learning-react/).
+Quiero enseñar acerca de este tema consistentemente. Con frecuencia encuentro material en internet que no recibe actualizaciones, o solo muestra una pequeña parte de un tema. A veces a la gente se le dificulta encontrar recursos consistentes y actualizados de donde aprender. Quiero brindar esta experiencia de aprendizaje consistente y actualizada. Además, espero pueda ayudar a los menos afortunados con mis proyectos dándoles el contenido gratis o a través de [otros impactos significativos](https://www.robinwieruch.de/giving-back-by-learning-react/).
 
-## Who is this book for?
+## ¿Para quién es este libro?
 
-**JavaScript Beginners**
+**Principantes de JavaScript**
 
-JavaScript beginners with knowledge in fundamental JS, CSS, and HTML: If you just started out with web development, and have a basic grasp about JS, CSS, and HTML, this book should give you everything that's needed to learn React. However, if you feel there is a gap in your JavaScript knowledge, don't hesitate to read up on this topic before continuing with the book. You will have lots of references to this fundamental knowledge in the book though.
+Principiantes de JavaScript con conocimiento en JS, CSS y HTML fundamental: si acabas de empezar con el desarrollo web y tienes una idea general acerca de JS, CSS y HTML, este libro debería darte todo lo que necesitas para aprender React. Sin embargo, si sientes que hay cosas que no hayan quedado claras sobre JavaScript, no dudes en leer extensivamente ese tema antes de continuar con el libro. Aunque tendrás muchas referencias a este conocimiento fundamental en este libro.
 
-**JavaScript Veterans**
+**Veteranos de JavaScript**
 
-JavaScript veterans coming from jQuery: If you have used JavaScript with jQuery, MooTools, and Dojo extensively back in the days, the new JavaScript era may seem overwhelming for someone getting back on track with it. However, most of the fundamental knowledge didn't change, it's still JavaScript and HTML under the hood, so this book should give you the right start into React.
+Veteranos de JavaScript que vienen de jQuery: si has usado JavaScript con jQuery, MooTools y Dojo extensivamente tiempo atrás, la nueva era de JavaScript podría parecer abrumadora para algunos. Sin embargo, la mayoría del conocimiento fundamental no cambió, es todavía JavaScript y HTML tras bambalinas, así que este libro debería darte el inicio perfecto en React.
 
-**JavaScript Enthusiasts**
+**Entusiastas de JavaScript**
 
-JavaScript enthusiasts with knowledge in other modern SPA frameworks: If you are coming from Angular or Vue, there may be lots of differences in how to write applications with React, however, all these frameworks share the same fundamentals of JavaScript and HTML. After a mindset shift to get comfortable with React, you should be doing just fine adopting React.
+Entusiastas de JavaScript con conocimiento en otros marcos de trabajo del tipo SPA: si vienes de Angular o Vue, puede haber muchas diferencias en cómo escribes aplicaciones con React, sin embargo,  todos estos marcos de trabajo comparten los mismos principios fundamentales de JavaScript y HTML. Después de un cambio de paradigma, te irá bien adoptando React.
 
-**Non JavaScript Developers**
+**Desarrolladores de otros lenguages**
 
-If you are coming from another programming language, you should be more familiar than others about the different aspects of programming. After picking up the fundamentals about JavaScript and HTML, you should have a good time learning React with me.
+Si vienes de otro lenguaje de programación, deberías estar más familiarizado que otros sobre de los distintos aspectos de programación. Después de aprender los fundamentos de JavaScript y HTML, deberías tener un momento agradable aprendiendo React conmigo.
 
-**Designers and UI/UX Enthusiasts**
+**Diseñadores y entusiastas UI/UX**
 
-If your main profession is in design, user interaction or user experience, don't hesitate to pick up this book. You may be already quite familiar with HTML and CSS which is a plus. After going through some more JavaScript fundamentals, you should be good to get through this book. These days UI/UX are moving closer to the implementation details which are often taken care of with React. It would be your perfect asset to know how things work in code.
+Si tu profesión principal es en diseño, interacción de usuario o experiencia de usuario, no dudes en tomar este libro. Puedes estar bastante familiarizado con HTML y CSS, lo cual es un plus. Después de revisar algunos fundamentos de JavaScript, debería ser bueno leer este libro. En estos días, la Interfaz de Usuario / Experiencia de Usuario se está moviendo más cerca de los detalles de implementación de los cuales React se hace cargo. Sería un recurso perfecto aprender cómo hacer cosas con código.
 
-**Team Leads, Product Owners, or Product Managers**
+**Líderes de equipo, Dueños de Producto o Administradores de Producto**
 
-If you are a team lead, product owner or product manager of your development department, this book should give you a good breakdown of all the essential parts in a React application. Every section explains one React concept/pattern/technique to add another feature or to improve the overall architecture. It's a well rounded reference guide for React.
+Si usted es un líder de equipo, dueño de producto o gerente de producto de su departamento de desarrollo, este libro debe brindarte un buen desglose de todas las partes esenciales en una aplicación React. Cada sección explica un concepto / patrón / técnica de React para agregar otra característica o mejorar la arquitectura general. Es una guía de referencia completa para React.

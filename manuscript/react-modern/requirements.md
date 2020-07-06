@@ -8,7 +8,7 @@ I have provided [a setup guide](https://www.robinwieruch.de/developer-setup/) to
 
 Throughout this learning experience I will use the term *command line*, which will be used synonymously for the terms *command line tool*, *terminal*, and *integrated terminal*. The same applies for the terms *editor*, *text editor*, and *IDE*, depending on what you decided to use for your setup.
 
-Optionally, I recommend managing projects in GitHub while we conduct the exercises in this book, and I've provided a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along. It's also a great way to share your code later with other people.
+Optionally, I recommend managing projects in GitHub while we conduct the exercises in this book, and I've provided a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. GitHub has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along. It's also a great way to share your code later with other people.
 
 If you don't want to set up the editor/terminal combination or IDE on your local machine, [CodeSandbox](https://codesandbox.io/), an online editor, is also a viable alternative. While CodeSandbox is a great tool for sharing code online, a local machine setup is a better tool for learning the different ways to create a web application. Also, if you want to develop applications professionally, a local setup will be required.
 
