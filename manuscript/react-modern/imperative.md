@@ -1,4 +1,4 @@
-## Imperative React
+## React Imperativo
 
 React is inherently declarative, starting with JSX and ending with hooks. In JSX, we tell React *what* to render and not *how* to render it. In a React side-effect Hook (useEffect), we express when to achieve *what* instead of *how* to achieve it. Sometimes, however, we'll want to access the rendered elements of JSX imperatively, in cases such as these:
 
@@ -6,12 +6,12 @@ React is inherently declarative, starting with JSX and ending with hooks. In JSX
   * measure (read) an element's width or height
   * setting (write) an input field's focus state
 * implementation of more complex animations:
-  * setting transitions
+  * configurar transiciones
   * orchestrating transitions
-* integration of third-party libraries:
-  * [D3](https://d3js.org/) is a popular imperative chart library
+* integración de librerías de terceros:
+  * [D3](https://d3js.org/) es una librería de gráficas, imperativa y muy popular.
 
-Because imperative programming in React is often verbose and counterintuitive, we'll walk only through a small example for setting the focus of an input field imperatively. For the declarative way, simply set the input field's autofocus attribute:
+Debido a que la programación imperativa en React es a menudo detallada y contraintuitiva, solo veremos un pequeño ejemplo para establecer el enfoque de un campo de entrada (input) de manera imperativa. Para la forma declarativa, simplemente configura el atributo autofocus del input:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~

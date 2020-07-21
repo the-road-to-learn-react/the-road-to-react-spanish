@@ -1,10 +1,10 @@
-# Fundamentals of React
+# Fundamentos de React
 
-In the first part of this learning experience, we'll cover the fundamentals of React, after which we'll create our first React project. Then we'll explore new aspects of React by implementing real features, the same as developing an actual web application. By the end we'll have a working React application with features like client and server-side searching, remote data fetching, and advanced state management.
+En la primera parte de esta experiencia de aprendizaje, cubriremos los fundamentos de React, después de lo cual crearemos nuestro primer proyecto con React. Luego, exploraremos los nuevos aspectos de React mediante la implementación de características reales, lo mismo que desarrollar una aplicación web real. Al final, tendremos una aplicación React en funcionamiento con características como la búsqueda del lado del cliente y del servidor, la obtención remota de datos y la gestión avanzada del estado.
 
-## Hello React
+## Hola React
 
-Single-page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become increasingly popular with first generation SPA frameworks like Angular (by Google), Ember, Knockout, and Backbone. Using these frameworks made it easier to build web applications which advanced beyond vanilla JavaScript and jQuery. React, yet another solution for SPAs, was released by Facebook later in 2013. All of them are used to create entire web applications in JavaScript.
+Las Single Page Application ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) se han vuelto más populares con los frameworks SPA de primera generación como Angular (Google), Ember, Knockout, Backbone. El uso de estos frameworks facilitó la creación de aplicaciones web que avanzaron más allá de Vanilla JavaScript, que no es más que Javascript puro, y jQuery.React, otra solución para SPA, fue lanzada por Facebook a finales de 2013. Todos ellos se utilizan para crear aplicaciones web completas en JavaScript.
 
 For a moment, let's go back in time before SPAs existed: In the past, websites and web applications were rendered from the server. A user visits a URL in a browser and requests one HTML file and all its associated HTML, CSS, and JavaScript files from a web server. After some network delay, the user sees the rendered HTML in the browser (client) and starts to interact with it. Every additional page transition (meaning: visiting another URL) would initiate this chain of events again. In this version from the past, essentially everything crucial is done by the server, whereas the client plays a minimal role by just rendering page by page. While barebones HTML and CSS was used to structure the application, just a little bit of JavaScript was thrown into the mix to make interactions (e.g. toggling a dropdown) or advanced styling (e.g. positioning a tooltip) possible. A popular JavaScript library for this kind of work was jQuery.
 
