@@ -1,6 +1,6 @@
 ## React Class Components: State
 
-Before React Hooks, class components were superior to function components because they could be stateful. With a class constructor, we can set an initial state for the component. Also, the component's instance (`this`) gives access to the current state (`this.state`) and the component's state updater method (`this.setState`):
+Antes de los Hooks de React, los componentes de tipo clase eran superiores a los componentes funcionales porque podían contener estados. With a class constructor, we can set an initial state for the component. Also, the component's instance (`this`) gives access to the current state (`this.state`) and the component's state updater method (`this.setState`):
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -42,6 +42,6 @@ If the state has more than one property in its state object, the `setState` meth
 
 In a React class component, there are two dedicated APIs (`this.state` and `this.setState`) to manage a component's state. In a function component, React's useState and useReducer hooks handle this. Related items are packed into one state hook, while a class component must use a general state API. This was one of the major reasons to introduce React Hooks, and move away from class components.
 
-### Exercises:
+### Ejercicios:
 
 * Write a stateful class component (e.g. Input).

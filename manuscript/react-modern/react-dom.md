@@ -27,7 +27,7 @@ ReactDOM.render(
 
 The second argument specifies where the React application enters your HTML. It expects an element with an `id='root'`, found in the *public/index.html* file. This is a basic HTML file.
 
-### Exercises:
+### Ejercicios:
 
 * Open the *public/index.html* to see where the React application enters your HTML.
 * Consider how we can include a React application in an external web application that uses HTML.

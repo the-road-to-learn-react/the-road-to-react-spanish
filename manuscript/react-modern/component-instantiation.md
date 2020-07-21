@@ -69,7 +69,7 @@ function List() { ... }
 
 Once we've defined a **component**, we can use it like an HTML **element** anywhere in our JSX. The element produces an **component instance** of your component, or in other words, the component gets instantiated. You can create as many component instances as you want. It's not much different from a JavaScript class definition and usage.
 
-### Exercises:
+### Ejercicios:
 
 * Familiarize yourself with the terms *component definition*, *component instance*, and *element*.
 * Experiment by creating multiple component instances of a List component.

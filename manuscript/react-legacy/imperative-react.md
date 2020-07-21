@@ -53,6 +53,6 @@ With the helper function, the ref is created in the class' constructor, applied 
 
 Where createRef is used in React's class components, React's useRef Hook is used in React function components. As React shifts towards function components, today its common practice to use the useRef hook exclusively to manage refs and apply imperative programming principles.
 
-### Exercises:
+### Ejercicios:
 
 * Read more about [the different ref techniques in React](https://reactjs.org/docs/refs-and-the-dom.html).

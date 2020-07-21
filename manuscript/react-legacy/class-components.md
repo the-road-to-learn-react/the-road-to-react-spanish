@@ -1,6 +1,6 @@
 # React's Legacy
 
-React has changed a lot since 2013. The iterations of its library, how React applications are written, and especially its components have all changed drastically. However, many React applications were built over the last few years, so not everything was created with the current status quo in mind. This section of the book covers React's legacy.
+React ha cambiado mucho desde el 2013. La iteración de su librería, cómo son escritas las aplicaciones de React, y especialmente sus componentes cambiaron drásticamente. However, many React applications were built over the last few years, so not everything was created with the current status quo in mind. This section of the book covers React's legacy.
 
 I won't cover all that's considered legacy in React, because some features have been revamped more than once. You may see the previous iteration of the feature in older React applications, but will probably be different than the current.
 
@@ -68,7 +68,7 @@ If no side-effects and no state were used in legacy apps, we'd use a function co
 
 With the addition of React Hooks, function components worked the same as class components, with state and side-effects. And since there was no longer any practical difference between them, the community chose function components since they are more lightweight.
 
-### Exercises:
+### Ejercicios:
 
 * Read more about [JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
 * Read more about [how to refactor from a class component to a function component](https://www.robinwieruch.de/react-hooks-migration).
