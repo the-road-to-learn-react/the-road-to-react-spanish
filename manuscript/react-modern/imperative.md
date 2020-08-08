@@ -140,15 +140,15 @@ const InputWithLabel = ({
 
 Todos los pasos esenciales están marcados con comentarios que son explicados paso a paso:
 
-* (A) First, create a `ref` with **React's useRef hook**. This `ref` object is a persistent value which stays intact over the lifetime of a React component. It comes with a property called `current`, which, in contrast to the `ref` object, can be changed.
-* (B) Second, the `ref` is passed to the input field's JSX-reserved `ref` attribute and the element instance is assigned to the changeable `current` property.
+* (A) Primero, crea un `ref` con el **hook useRef de React**. Este objeto `ref` es un valor persistente el cual se mantiene intacto durante el ciclo de vida del componente de React. Viene con una propiedad llamada `current`, la cual, en contraste con el objeto `ref`, puede ser modificado.
+* (B) Segundo, el `ref` is passed to the input field's JSX-reserved `ref` attribute and the element instance is assigned to the changeable `current` property.
 * (C) Third, opt into React's lifecycle with React's useEffect Hook, performing the focus on the input field when the component renders (or its dependencies change).
 * (D) And fourth, since the `ref` is passed to the input field's `ref` attribute, its `current` property gives access to the element. Execute its focus programmatically as a side-effect, but only if `isFocused` is set and the `current` property is existent.
 
 This was an example of how to move from declarative to imperative programming in React. It's not always possible to go the declarative way, so the imperative approach can be whenever it's necessary. This lesson is for the sake of learning about the DOM API in React.
 
-### Ejercicios:
+### Ejercicios
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Imperative-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Component-Composition...hs/Imperative-React?expand=1).
-* Read more about [React's useRef Hook](https://reactjs.org/docs/hooks-reference.html#useref).
+* Confirma tu [código fuente de la última sección](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Imperative-React).
+  * Confirma los [cambios de la última sección](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Component-Composition...hs/Imperative-React?expand=1).
+* Lee más acerca de [Hook useRef de React](https://reactjs.org/docs/hooks-reference.html#useref).

@@ -1,6 +1,6 @@
 ## React Class Components: State
 
-Antes de los Hooks de React, los componentes de tipo clase eran superiores a los componentes funcionales porque podían contener estados. With a class constructor, we can set an initial state for the component. Also, the component's instance (`this`) gives access to the current state (`this.state`) and the component's state updater method (`this.setState`):
+Antes de los Hooks de React, los componentes de tipo clase eran superiores a los componentes funcionales porque podían contener estados. Con un constructor de clase, podemos establecer un estado inicial para el componente. También, la instancia del componente `this` le da acceso al estado actual (`this.state`) y el método actualizador del estado del componente (`this.setState`):
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -38,10 +38,10 @@ class App extends React.Component {
 }
 ~~~~~~~
 
-If the state has more than one property in its state object, the `setState` method performs only a shallow update. Only the properties passed to `setState` are overwritten, and all other properties in the state object stay intact. Since state management is important for frontend applications, there was no way around class components without hooks for function components.
+Si el objeto estado tiene más de una propiedad, el método `setState` realiza solo una actualización superficial. Solo las propiedades pasadas a `setState` son sobreescritas, y todas las otras propiedades en el objeto estado permanecen intactas. Dado que la gestión del estado es importante para las aplicaciones frontend, no había forma de implementarlo en componentes tipo clase sin hooks para los componentes funcionales.
 
-In a React class component, there are two dedicated APIs (`this.state` and `this.setState`) to manage a component's state. In a function component, React's useState and useReducer hooks handle this. Related items are packed into one state hook, while a class component must use a general state API. This was one of the major reasons to introduce React Hooks, and move away from class components.
+En un componente de clase en React, hay dos APIs dedicadas (`this.state` y `this.setState`) para gestionar el estado de un componente. En un componente funcional, los hooks useState y useReducer de React manejan esto. Objetos relacionados están empaquetados en un hook de estado, mientras que un componente de clase debe usar una API de estado general. Esta fue una de las mayores razones para introducir los Hooks de React, y alejarse de los componentes de clase.
 
-### Ejercicios:
+### Ejercicios
 
-* Write a stateful class component (e.g. Input).
+* Escribe un componente de clase con estado (p.ej. Input).
