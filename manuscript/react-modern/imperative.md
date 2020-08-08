@@ -1,13 +1,13 @@
 ## React Imperativo
 
-React is inherently declarative, starting with JSX and ending with hooks. In JSX, we tell React *what* to render and not *how* to render it. In a React side-effect Hook (useEffect), we express when to achieve *what* instead of *how* to achieve it. Sometimes, however, we'll want to access the rendered elements of JSX imperatively, in cases such as these:
+React es inherentemente declarativo, comienza con JSX y termina con hooks. En JSX, le decimos a React *qué* renderizar y no *cómo* renderizarlo. En un Hook de efecto secundario (useEffect), expresamos cuándo lograr *qué* en lugar de *cómo* lograrlo. Algunas veces, sin embargo, queremos acceder los elementos renderizados de JSX imperativamente, en casos como estos:
 
-* read/write access to elements via the DOM API:
-  * measure (read) an element's width or height
-  * setting (write) an input field's focus state
-* implementation of more complex animations:
+* acceso de lectura/escritura a los elementos via DOM API:
+  * medir (leer) el ancho o alto de un elemento.
+  * establecer (escribir) el estado focus de un campo tipo input.
+* implementación de animaciones más complejas:
   * configurar transiciones
-  * orchestrating transitions
+  * orquestar transiciones
 * integración de librerías de terceros:
   * [D3](https://d3js.org/) es una librería de gráficas, imperativa y muy popular.
 
@@ -32,7 +32,7 @@ const InputWithLabel = ({ ... }) => (
 );
 ~~~~~~~
 
-This works, but only if one of the reusable components is rendered once. For example, if the App component renders two InputWithLabel components, only the last rendered component receives the auto-focus on its render. However, since we have a reusable React component here, we can pass a dedicated prop and let the developer decide whether its input field should have an autofocus or not:
+Esto funciona, pero solo si uno de los componentes reusables se renderiza una vez. Por ejemplo, si el componente App renderiza dos componentes InputWithLabel, solo el último componente renderizado recibe el auto-focus en su renderizado. Sin embargo, como tenemos un componente reusable aquí, podemos pasar una prop dedicada y dejar que el desarrollador decida si su elemento input debería tener auto-focus o no:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -41,7 +41,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>My Hacker Stories</h1>
+      <h1>Mis Historias de Hacker</h1>
 
       <InputWithLabel
         id="search"
@@ -90,7 +90,7 @@ const InputWithLabel = ({
 );
 ~~~~~~~
 
-The feature works, yet it's still a declarative implementation. We are telling React *what* to do and not *how* to do it. Even though it's possible to do it with the declarative approach, let's refactor this scenario to an imperative approach. We want to execute the `focus()` method programmatically via the input field's DOM API once it has been rendered:
+La implementación funciona, pero sigue siendo una implementación declarativa. Le estamos diciendo a React *qué* hacer y no *cómo* hacerlo. Aunque es posible hacerlo con el enfoque declarativo, refactoricemos este escenario a un enfoque imperativo. Queremos ejecutar el método `focus()` programáticamente a través de API DOM vía input una vez que ha sido renderizado:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -138,7 +138,7 @@ const InputWithLabel = ({
 };
 ~~~~~~~
 
-All the essential steps are marked with comments that are explained step by step:
+Todos los pasos esenciales están marcados con comentarios que son explicados paso a paso:
 
 * (A) First, create a `ref` with **React's useRef hook**. This `ref` object is a persistent value which stays intact over the lifetime of a React component. It comes with a property called `current`, which, in contrast to the `ref` object, can be changed.
 * (B) Second, the `ref` is passed to the input field's JSX-reserved `ref` attribute and the element instance is assigned to the changeable `current` property.
