@@ -1,30 +1,42 @@
 ## Meet the React Component
 
-Our first React component is in the *src/App.js* file, which should look similar to the example below. The file might differ slightly, because create-react-app will sometimes update the default component's structure.
+Every React application is built on the foundation of **React components**. In this section, you will get to know your first React component which is located in the *src/App.jsx* file and which should look similar to the example below. Depending on your Vite version, the content of the file might differ slightly:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+      <div>
+        <a href="https://vitejs.dev" target="_blank">
+          <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
-      </header>
+        <a href="https://reactjs.org" target="_blank">
+          <img
+            src={reactLogo}
+            className="logo react"
+            alt="React logo"
+          />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
     </div>
   );
 }
@@ -32,17 +44,19 @@ function App() {
 export default App;
 ~~~~~~~
 
-This file will be our focus throughout this tutorial, unless otherwise specified. Let's start by reducing the component to a more lightweight version for getting you started without too much boilerplate code from create-react-app.
+This file will be our focus throughout this book, unless otherwise specified. Even though this file will grow in size, because we are not splitting it up from the beginning into multiple files, it will be simpler to understand as a beginner, because everything is at one place. Once you get more comfortable with React, I will show you how to split your React project into multiple files.
 
-{title="src/App.js",lang="javascript"}
+Let's start by reducing the component to a more lightweight version for getting you started without too much distracting [boilerplate code](https://bit.ly/3lZzckS):
+
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 # leanpub-start-insert
-import React from 'react';
+import * as React from 'react';
 
 function App() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Hello React</h1>
     </div>
   );
 }
@@ -51,22 +65,28 @@ export default App;
 # leanpub-end-insert
 ~~~~~~~
 
-First, this React component, called App component, is just a JavaScript function. It's commonly called **function component**, because there are other variations of React components  (see **component types** later). Second, the App component doesn't receive any parameters in its function signature yet (see **props** later). And third, the App component returns code that resembles HTML which is called JSX (see **JSX** later).
+Optionally you can also make the *src/index.css* and *src/App.css* files blank for starting from a clean slate style-wise.
 
-The function component possess implementation details like any other JavaScript function. You will see this in practice in action throughout your React journey:
+Next, start your application with `npm run dev` on the command line and check what's displayed in the browser. You should see the headline "Hello React" showing up. Before we dive deeper into each topic, here comes a quick overview of what's in your code and what we will cover more in-depth in the following sections:
 
-{title="src/App.js",lang="javascript"}
+* First, this React component, specifically called App component, is just a JavaScript function. In contrast to traditional JavaScript functions, it's defined in [PascalCase](https://www.robinwieruch.de/javascript-naming-conventions/). A component has to start with a capital letter, otherwise it isn't treated as component in React. The kind of the App component is commonly called a **function component**. Function components are the modern way of using components in React, however, be aware that there are other variations of React components (see **component types** in a later section) too.
+* Second, the App component doesn't have any parameters in its function signature yet. In the upcoming sections, you will learn how to pass information (see **props** in a later section) from one component to another component. These props will be accessible via the function's signature as parameters then.
+* And third, the App component returns code that resembles HTML. You will see how this new syntax (see **JSX** in a later section), allows you to combine JavaScript and HTML for displaying highly dynamic and interactive content in a browser.
+
+Like any other JavaScript function, a function component can have implementation details between the function signature and the return statement. You will see this in practice in action throughout your React journey:
+
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
-import React from 'react';
+import * as React from 'react';
 
 function App() {
 # leanpub-start-insert
-  // do something in between
+  // you can do something in between
 # leanpub-end-insert
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Hello React</h1>
     </div>
   );
 }
@@ -74,11 +94,11 @@ function App() {
 export default App;
 ~~~~~~~
 
-Variables defined in the function's body will be re-defined each time this function runs, like all JavaScript functions:
+Variables defined in the function's body will be re-defined each time this function runs, which shouldn't be something new if you are familiar with JavaScript and its functions:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
-import React from 'react';
+import * as React from 'react';
 
 function App() {
 # leanpub-start-insert
@@ -87,7 +107,7 @@ function App() {
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Hello React</h1>
     </div>
   );
 }
@@ -95,11 +115,13 @@ function App() {
 export default App;
 ~~~~~~~
 
-Since we don't need anything from within the App component used for this variable -- e.g. parameters coming from the function signature -- we can define the variable outside of the App component as well:
+The function of a component runs every time a component is displayed in the browser. This happens for the initial rendering (read: displaying) of the component, but also whenever the component updates because it has to display something different due to changes (re-rendering). We will learn more about this later too.
 
-{title="src/App.js",lang="javascript"}
+Since we do not want to re-define a variable within a function every time this function runs, we could define this variable outside of the component as well. In this case, the `title` does not depend on any information that's within the function component (e.g. parameters coming from the function's signature), hence it's okay to move it outside. Therefore it will be defined only once and not every time the function is called:
+
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
-import React from 'react';
+import * as React from 'react';
 
 # leanpub-start-insert
 const title = 'React';
@@ -108,7 +130,7 @@ const title = 'React';
 function App() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Hello React</h1>
     </div>
   );
 }
@@ -116,12 +138,11 @@ function App() {
 export default App;
 ~~~~~~~
 
-Let's use this variable in the next section.
+On your journey as a React developer, and in this learning experience, you will come across both scenarios: variables (and functions) defined outside and within a component. As a rule of thumb: If a variable does not need anything from within the function component's body (e.g. parameters), then define it outside of the component which avoids re-defining it on every function call.
 
-### Ejercicios:
+### Exercises:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-the-React-Component).
-* If you are unsure when to use `const`, `let` or `var` in JavaScript (or React) for variable declarations, make sure to [read more about their differences](https://www.robinwieruch.de/const-let-var).
-  * Read more about [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const).
-  * Read more about [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let).
+* Compare your source code against the author's [source code](https://bit.ly/3UvoTEn).
+  * Optional: If you are using TypeScript, check out the author's source code [here](https://bit.ly/3RhDTm8).
 * Think about ways to display the `title` variable in your App component's returned HTML. In the next section, we'll put this variable to use.
+* Optional: [Leave feedback for this section](https://forms.gle/VYiZqqjzXGE11wCv6).

@@ -1,8 +1,8 @@
 ## Meet another React Component
 
-So far we've only been using the App component to create our applications. We used the App component in the last section to express everything needed to render our list in JSX, and it should scale with your needs and eventually handle more complex tasks. To help with this, we'll split some of its responsibilities into a standalone List component:
+Components are the foundation of every React application. With a growing React project, you will get more and more components to manage. Each component encapsulates functionalities (e.g. rendering a list of items). So far we've only been using the App component. This will not end up well, because components should scale with your application's size. So instead of making one component larger and more complex over time, we'll split one component into multiple components eventually. Therefore, we'll start with a new List component which extracts functionalities from the App component:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const list = [ ... ];
 
@@ -10,44 +10,29 @@ function App() { ... }
 
 # leanpub-start-insert
 function List() {
-  return list.map(function(item) {
-    return (
-      <div key={item.objectID}>
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-      </div>
-    );
-  });
-}
-# leanpub-end-insert
-~~~~~~~
-
-Optional: If this component looks odd, because the outermost part of the returned JSX starts with JavaScript. We could use it with a wrapping HTML element as well, but we'll continue with the previous version.
-
-{title="src/App.js",lang="javascript"}
-~~~~~~~
-function List() {
-# leanpub-start-insert
   return (
-    <div>
-      {list.map(function(item) {
-# leanpub-end-insert
-        return (... );
-# leanpub-start-insert
+    <ul>
+      {list.map(function (item) {
+        return (
+          <li key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </li>
+        );
       })}
-    </div>
+    </ul>
   );
-# leanpub-end-insert
 }
+# leanpub-end-insert
 ~~~~~~~
 
-Now the new List component can be used in the App component:
+Then the new List component can be used in the App component where we have been using the inlined HTML elements previously:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 function App() {
   return (
@@ -67,16 +52,50 @@ function App() {
 }
 ~~~~~~~
 
-You've just created your first React component! With this example, we can see how components that encapsulate meaningful tasks can work for larger React applications.
+You've just created your first React component. With this example in mind, we can see how components encapsulate meaningful tasks while contributing to the greater good of a larger React project. Extracting a component is a task that you will perform very often as a React developer, because it's always the case that a component will grow in size and complexity. Go ahead and extract the label and input elements from the App component into their own Search component. The following code snippet shows how the book would solve this task:
+
+{title="src/App.jsx",lang="javascript"}
+~~~~~~~
+function App() {
+  return (
+    <div>
+      <h1>My Hacker Stories</h1>
+
+# leanpub-start-insert
+      <Search />
+# leanpub-end-insert
+
+      <hr />
+
+      <List />
+    </div>
+  );
+}
+
+# leanpub-start-insert
+function Search() {
+  return (
+    <div>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
+    </div>
+  );
+}
+# leanpub-end-insert
+~~~~~~~
+
+Finally, we have three components in our application: App, List, and Search. Generally speaking, a React application consists of many hierarchical components; which we can put into the following categories. The following illustration assumes that we have split out an Item component from the List component as well -- which helps us to clarify the taxonomie.
 
 ![](images/component-tree.png)
 
-Larger React applications have **component hierarchies** (also called **component trees**). There is usually one uppermost **entry point component** (e.g. App) that spans a tree of components below it. The App is the **parent component** of the List, so the List is a **child component** of the App. In a component tree, the App is the **root component**, and the components that don't render any other components are called **leaf components** (e.g. Item). The App can have multiple children, as can the List. If the App has another child component, the additional child component is called a **sibling component** of the List.
+React applications have **component hierarchies** (also called **component trees**). There is usually one uppermost **entry point component** (e.g. App) that spans a tree of components below it. The App is the **parent component** of the List and Search, so the List and Search are **child components** of the App component and **sibling components** to each other. The illustration takes it one step further where the Item component is a child component of the List. In a component tree, there is always a **root component** (e.g. App), and the components that don't render any other components are called **leaf components** (e.g. List/Search component in our current source code or Item/Search component from the illustration). All components can have zero, one, or many child components.
 
-### Ejercicios:
+You can see how a React application grows in size by creating more components which are connected in one hierarchy. Usually you will start out with the App component from where you grow your component tree. Either you know the components you wanna create beforehand or you start with one component and extract components from it eventually. For a beginner, it may be difficult to know when to create a new component or when to extract a component from another component. Usually it happens naturally whenever a component gets too big in size/complexity or whenever you see natural boundaries in domains/functionality (e.g. List component renders a list of items, Search component renders a search form). In the end, each component represents a single unit in your application which makes the application maintainable and predictable.
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-another-React-Component).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Lists-in-React...hs/Meet-another-React-Component?expand=1).
-* Draw your components -- the App component and List component -- as a component tree on a sheet of paper. Extend this component tree with other possible components (e.g. extracted Search component for the input field and label in the App component). Try to figure out which other parts can be extracted as standalone components.
-* If a Search component is used in the App component, would the Search component be a sibling, parent, or child component for the List component?
-* Ask yourself what problems could arise if we keep treating the `list` variable as global variable. We will cover how to handle these problems in the upcoming sections.
+### Exercises:
+
+* Compare your source code against the author's [source code](https://bit.ly/3R0Aw35).
+  * Recap all the [source code changes from this section](https://bit.ly/3f5pTi7).
+  * Optional: If you are using TypeScript, check out the author's source code [here](https://bit.ly/3RlJKXM).
+* We can't extract an Item component from the List component (like in the illustration) yet, because we don't know how to pass individual items from the list to each Item component. Think about a way to do it.
+* Optional: [Leave feedback for this section](https://forms.gle/EZENmy48zvDP82NL7).

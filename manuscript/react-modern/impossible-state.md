@@ -1,20 +1,20 @@
 ## React Impossible States
 
-Perhaps you've noticed a disconnect between the single states in the App component, which seem to belong together because of the `useState` hooks. Technically, all the states related to the asynchronous data belong together, which doesn't only include the stories as actual data, but also their loading and error states.
+Perhaps you've noticed a disconnect between the single states in the App component when using multiple of React's useState Hooks. Technically, all states related to the asynchronous data belong together, which doesn't only include the stories as actual data, but also their loading and error states. That's where one reducer and React's useReducer Hook come into play to manage domain related states. But why should we care?
 
-There is nothing wrong with multiple `useState` hooks in one React component. Be wary once you see multiple state updater functions in a row, however. These conditional states can lead to **impossible states**, and undesired behavior in the UI. Try changing your pseudo data fetching function to the following to simulate the error handling:
+There is nothing wrong with multiple `useState` hooks in one React component. Be wary once you see multiple state updater functions in a row, however. These conditional states can lead to **impossible states** and undesired behavior in the UI. Try changing your pseudo data fetching function to the following implementation to simulate an error and thus our implementation of error handling:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const getAsyncStories = () =>
   new Promise((resolve, reject) => setTimeout(reject, 2000));
 ~~~~~~~
 
-The impossible state happens when an error occurs for the asynchronous data. The state for the error is set, but the state for the loading indicator isn't revoked. In the UI, this would lead to an infinite loading indicator and an error message, though it may be better to show the error message only and hide the loading indicator. Impossible states are not easy to spot, which makes them infamous for causing bugs in the UI.
+The impossible state happens when an error occurs for the asynchronous data. The state for the error is set, but the state for the loading indicator isn't revoked. In the UI, this would lead to an infinite loading indicator and an error message, though it may be better to show the error message only and hide the loading indicator. Impossible states are not easy to spot, which makes them infamous for causing bugs in the UI. You could go on and try yourself to fix this bug.
 
-Fortunately, we can improve our chances by moving states that belong together from multiple `useState` and `useReducer` hooks into a single `useReducer` hook. Take the following `useState` hooks:
+Fortunately, we can improve our chances of not dealing with such bugs by moving states that belong together from multiple `useState` (and `useReducer`) hooks into a single `useReducer` hook. Take the following hooks:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -30,9 +30,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Merge them into one `useReducer` hook for a unified state management and a more complex state object:
+And merge them into one `useReducer` hook for a unified state management which encompasses a more complex state object and eventually more complex state transitions:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -48,9 +48,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Everything related to asynchronous data fetching must use the new dispatch function for state transitions:
+Since we cannot use the state updater functions from React's useState Hooks anymore, everything related to asynchronous data fetching must use the new dispatch function for the state transitions. The most straightforward approach is exchanging the state updater function with the dispatch function. Then the dispatch function receives a distinct `type` and a `payload`. The latter resembles the same payload that we would have used to update the state with a state updater function:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -66,13 +66,13 @@ const App = () => {
 # leanpub-end-insert
 
     getAsyncStories()
-      .then(result => {
-        dispatchStories({
+      .then((result) => {
 # leanpub-start-insert
+        dispatchStories({
           type: 'STORIES_FETCH_SUCCESS',
-# leanpub-end-insert
           payload: result.data.stories,
         });
+# leanpub-end-insert
       })
       .catch(() =>
 # leanpub-start-insert
@@ -85,9 +85,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Since we introduced new types for state transitions, we must handle them in the `storiesReducer` reducer function:
+We changed two things for the reducer function. First, we introduced new types when we called the dispatch function from the outside. Therefore we need to add new cases for state transitions. And second, we changed the state structure from an array to a complex object. Therefore we need to take the new complex object into account as incoming state and returned state:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const storiesReducer = (state, action) => {
   switch (action.type) {
@@ -115,7 +115,7 @@ const storiesReducer = (state, action) => {
       return {
         ...state,
         data: state.data.filter(
-          story => action.payload.objectID !== story.objectID
+          (story) => action.payload.objectID !== story.objectID
         ),
       };
 # leanpub-end-insert
@@ -125,11 +125,11 @@ const storiesReducer = (state, action) => {
 };
 ~~~~~~~
 
-For every state transition, we return a *new state* object which contains all the key/value pairs from the *current state* object (via JavaScript's spread operator) and the new overwriting properties. For example, `STORIES_FETCH_FAILURE` resets the `isLoading`, but sets the `isError` boolean flags yet keeps all the other state intact (e.g. `stories`). That's how we get around the bug introduced earlier, since an error should remove the loading state.
+For every state transition, we return a *new state* object which contains all the key/value pairs from the *current state* object (via JavaScript's spread operator) and the new overwriting properties. For example, `STORIES_FETCH_FAILURE` sets the `isLoading` boolean to `false` and sets the `isError` boolean to `true`, while keeping all the the other state intact (e.g. `data` alias `stories`). That's how we get around the bug introduced earlier as impossible state since an error should set the loading boolean to `false`.
 
-Observe how the `REMOVE_STORY` action changed as well. It operates on the `state.data` , not longer just the plain `state`. The state is a complex object with data, loading and error states rather than just a list of stories. This has to be solved in the remaining code too:
+Observe how the `REMOVE_STORY` action changed as well. It operates on the `state.data`, and no longer just on the plain `state`. The state is a complex object with `data`, `isLoading`, and `error` states rather than just a list of stories. This has to be solved in the remaining code by addressing the state as object and not as array anymore:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -142,7 +142,7 @@ const App = () => {
   ...
 
 # leanpub-start-insert
-  const searchedStories = stories.data.filter(story =>
+  const searchedStories = stories.data.filter((story) =>
 # leanpub-end-insert
     story.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -172,17 +172,19 @@ const App = () => {
 
 Try to use the erroneous data fetching function again and check whether everything works as expected now:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const getAsyncStories = () =>
   new Promise((resolve, reject) => setTimeout(reject, 2000));
 ~~~~~~~
 
-We moved from unreliable state transitions with multiple `useState` hooks to predictable state transitions with React's useReducer Hook. The state object managed by the reducer encapsulates everything related to the stories, including loading and error state, but also implementation details like removing a story from the list of stories. We didn't get fully rid of impossible states, because it's still possible to leave out a crucial boolean flag like before, but we moved one step closer towards more predictable state management.
+We moved from unreliable state transitions with multiple `useState` hooks to predictable state transitions with React's useReducer Hook. The state object managed by the reducer encapsulates everything related to the fetching of stories including loading and error states, but also implementation details like removing a story from the stories. We didn't get fully rid of impossible states, because it's still possible to leave out a crucial boolean flag like before, but we moved one step closer towards more predictable state management.
 
-### Ejercicios:
+### Exercises:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Impossible-States).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Advanced-State...hs/React-Impossible-States?expand=1).
-* Read over the previously linked tutorials about reducers in JavaScript and React.
-* Read more about [when to use useState or useReducer in React](https://www.robinwieruch.de/react-usereducer-vs-usestate).
+* Compare your source code against the author's [source code](https://bit.ly/3R97YnT).
+  * Recap all the [source code changes from this section](https://bit.ly/3xIh9oF).
+  * Optional: If you are using TypeScript, check out the author's source code [here](https://bit.ly/3Ceq83w).
+* Read more about [when to use useState or useReducer in React](https://www.robinwieruch.de/react-usereducer-vs-usestate/).
+* Read more about [deriving state from props in React](https://www.robinwieruch.de/react-derive-state-props/).
+* Optional: [Leave feedback for this section](https://forms.gle/XWTJS65iu6WkiZMCA).

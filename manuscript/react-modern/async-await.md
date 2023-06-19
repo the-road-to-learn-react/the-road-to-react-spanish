@@ -1,8 +1,12 @@
-## Async/Await in React (Advanced)
+## Async/Await in React
 
-You'll work with asynchronous data often in React, so it's good to know alternative syntax for handling promises: async/await. The following refactoring of the `handleFetchStories` function without error handling shows how:
+There is no way around asynchronous data when working on real world applications. There will always be a remote API that gives your frontend data, so you need to work with this data asynchronously. In our React application, we have started to resolve promises with then/catch blocks. However, in modern JavaScript (and therefore React), a more popular solution is using async/await.
 
-{title="src/App.js",lang="javascript"}
+If you are already familiar with async/await or you want to explore [its usage](https://mzl.la/3AWyWaw) yourself, go ahead and change the code from using then/catch to async/await. If you have come this far, you could also consider compensating for the removal of the catch block for the error handling by using a try/catch blocks instead.
+
+Let's continue with the task here. First, you would have to replace the then/catch syntax with the async/await syntax. The following refactoring of the `handleFetchStories()` function shows how to accomplish it without error handling:
+
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -28,9 +32,9 @@ const App = () => {
 };
 ~~~~~~~
 
-To use async/await, our function requires the `async` keyword. Once you start using the `await` keyword, everything reads like synchronous code. Actions after the `await` keyword are not executed until promise resolves, meaning the code will wait.
+To use async/await, our function requires the `async` keyword. Once you start using the `await` keyword on returned promises, everything reads like synchronous code. Actions after the `await` keyword are not executed until the promise resolves, meaning the code will wait. To include error handling as before, the `try` and `catch` blocks are there to help. If something goes wrong in the `try` block, the code will jump into the `catch` block to handle the error:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -58,11 +62,13 @@ const App = () => {
 };
 ~~~~~~~
 
-To include error handling as before, the `try` and `catch` blocks are there to help. If something goes wrong in the `try` block,  the code will jump into the `catch` block to handle the error. `then`/`catch` blocks and async/await with `try`/`catch` blocks are both valid for handling asynchronous data in JavaScript and React.
+After all, using async/await with try/catch over then/catch makes it often more readable, because we avoid using callback functions and instead try to make our code more readable in a synchronous way. However, using then/catch is fine too. In the end, the whole team working on a project should agree on one syntax.
 
-### Ejercicios:
+### Exercises:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Async-Await-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Third-Party-Libraries-in-React...hs/Async-Await-in-React?expand=1).
-* Read more about [data fetching in React](https://www.robinwieruch.de/react-hooks-fetch-data).
-* Read more about [async/await in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function).
+* Compare your source code against the author's [source code](https://bit.ly/3Slryyv).
+  * Recap all the [source code changes from this section](https://bit.ly/3xIbSNE).
+  * Optional: If you are using TypeScript, check out the author's source code [here](https://bit.ly/3UASg86).
+* Alternative: Check out this little [helper library](https://bit.ly/3SBwGOT) which simplifies error handling without using try/catch.
+* Read more about [data fetching in React](https://www.robinwieruch.de/react-hooks-fetch-data/).
+* Optional: [Leave feedback for this section](https://forms.gle/mtMmwrrsiwioZ8GH6).

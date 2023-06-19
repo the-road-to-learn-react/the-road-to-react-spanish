@@ -1,10 +1,10 @@
 ## Forms in React
 
-Earlier we introduced a new button to fetch data explicitly with a button click. We'll advance its use with a proper HTML form, which encapsulates the button and input field for the search term with its label.
+There will be no modern application that doesn't use forms. A form is just a proper vehicle to submit data via a button from various input controls (e.g. input field, checkbox, radio button, slider). Earlier we introduced a new button to fetch data explicitly with a button click. We'll advance its use with a proper HTML form, which encapsulates the button and input field for the search term with its label.
 
 Forms aren't much different in React's JSX than in HTML. We'll implement it in two refactoring steps with some HTML/JavaScript. First, wrap the input field and button into an HTML form element:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -42,17 +42,15 @@ const App = () => {
 };
 ~~~~~~~
 
-Instead of passing the `handleSearchSubmit` handler to the button, it's used in the new form element. The button receives a new `type` attribute called `submit`, which indicates that the form element handles the click and not the button.
+Instead of passing the `handleSearchSubmit()` handler to the button, it's used in the new form element's `onSubmit` attribute. The button receives a new `type` attribute called `submit`, which indicates that the form element's `onSubmit` handles the click and not the button. Next, since the handler is used for the form event, it executes `preventDefault()` additionally on React's synthetic event. This prevents the HTML form's native behavior which would lead to a browser reload:
 
-Since the handler is used for the form event, it executes `preventDefault` in React's synthetic event. This prevents the HTML form's native behavior, which leads to a browser reload.
-
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
 
 # leanpub-start-insert
-  const handleSearchSubmit = event => {
+  const handleSearchSubmit = (event) => {
 # leanpub-end-insert
     setUrl(`${API_ENDPOINT}${searchTerm}`);
 
@@ -65,9 +63,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Now we can execute the search feature with the keyboard's `Enter` key. In the next two steps, we will only separate the component into its standalone SearchForm component:
+Now we can execute the search feature with the keyboard's "Enter" key, because we are using a form instead of just a standalone button. In the next two steps, we will separate the whole form into a new SearchForm component. If you want to go ahead yourself, do not hesitate. Anyway, that's how the form can gets extracted into its own component:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 # leanpub-start-insert
 const SearchForm = ({
@@ -93,9 +91,9 @@ const SearchForm = ({
 # leanpub-end-insert
 ~~~~~~~
 
-The new component is used by the App component. The App component still manages the state for the form, because the state is used in the App component to fetch data passed as props (`stories.data`) to the List component:
+The new component is instantiated in the App component. The App component still manages the state for the form though, because the state triggers the data request in the App component where the requested data will eventually get passed as props (here: `stories.data`) to the List component:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -126,12 +124,14 @@ const App = () => {
 };
 ~~~~~~~
 
-Forms aren't much different in React than HTML. When we have input fields and a button to submit data from them, we can give our HTML more structure by wrapping it into a form element with a `onSubmit` handler. The button that executes the submission needs only the "submit" `type`.
+Forms aren't much different in React than in plain HTML. When we have input fields and a button to submit data from them, we can give our HTML more structure by wrapping it into a form element with a `onSubmit` attribute. The button that executes the submission therefore needs the "submit" `type` to refer the process to the form element's handler. After all, it makes it more accessible for keyboard users as well.
 
-### Ejercicios:
+### Exercises:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Forms-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Async-Await-in-React...hs/Forms-in-React?expand=1).
-* Try the code without `preventDefault`.
-* Read more about [preventDefault for Events in React](https://www.robinwieruch.de/react-preventdefault).
-* Read more about [React Component Composition](https://www.robinwieruch.de/react-component-composition).
+* Compare your source code against the author's [source code](https://bit.ly/3RXqiSl).
+  * Recap all the [source code changes from this section](https://bit.ly/3fe5uaw).
+  * Optional: If you are using TypeScript, check out the author's source code [here](https://bit.ly/3xVur1e).
+* Read more about [forms in React](https://www.robinwieruch.de/react-form/).
+* Try what happens without using `preventDefault`.
+  * Read more about [preventDefault for events in React](https://www.robinwieruch.de/react-preventdefault/).
+* Optional: [Leave feedback for this section](https://forms.gle/d14Mf7WzetP25jxq5).

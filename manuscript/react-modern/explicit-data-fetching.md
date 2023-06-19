@@ -1,10 +1,19 @@
 ## Explicit Data Fetching with React
 
-Re-fetching all data each time someone types in the input field isn't optimal. Since we're using a third-party API to fetch the data, its internals are out of our reach. Eventually, we will incur [rate limiting](https://en.wikipedia.org/wiki/Rate_limiting), which returns an error instead of data.
+Re-fetching all data each time someone types in the input field isn't optimal. Since we're using a third-party API to fetch the data, its internals are out of our reach. Eventually, we will be confronted with [rate limiting](https://bit.ly/2ZaJXI8) which returns an error instead of data. To solve this problem, we will change the implementation details from implicit to explicit data (re-)fetching. In other words, the application will refetch data only if someone clicks a confirmation button.
 
-To solve this problem, change the implementation details from implicit to explicit data (re-)fetching. In other words, the application will refetch data only if someone clicks a confirmation button. First, add a button element for the confirmation to the JSX:
+**Task:** The server-side search executes every time a user types into the input field. The new implementation should only execute a search when a user clicks a confirmation button. As long as the button is not clicked, the search term can change but isn't executed as API request.
 
-{title="src/App.js",lang="javascript"}
+**Optional Hints:**
+
+* Add a button element to confirm the search request.
+* Create a stateful value for the confirmed search.
+* The button's event handler sets confirmed search as state by using the current search term.
+* Only when the new confirmed search is set as state, execute the side-effect to perform a server-side search.
+
+What's important with this feature is that we need a state for the fluctuating `searchTerm` and a new state for the confirmed search. But first of all, create a new button element which confirms the search and executes the data request eventually:
+
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -40,12 +49,12 @@ const App = () => {
 };
 ~~~~~~~
 
-Second, the handler, input, and button handler receive implementation logic to update the component's state. The input field handler still updates the `searchTerm`; the button handler sets the `url` derived from the *current* `searchTerm` and the static API URL as a new state:
+Second, we distinguish between the handler of the input field and the button. While the renamed handler of the input field still sets the stateful `searchTerm`, the new handler of the button sets the new stateful value called `url` which is derived from the *current* `searchTerm` and the static API endpoint as a new state:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
-  const [searchTerm, setSearchTerm] = useSemiPersistentState(
+  const [searchTerm, setSearchTerm] = useStorageState(
     'search',
     'React'
   );
@@ -59,7 +68,7 @@ const App = () => {
   ...
 
 # leanpub-start-insert
-  const handleSearchInput = event => {
+  const handleSearchInput = (event) => {
 # leanpub-end-insert
     setSearchTerm(event.target.value);
   };
@@ -74,9 +83,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Third, instead of running the data fetching side-effect on every `searchTerm` change -- which would happen each time the input field's value changes -- the `url` is used. The `url` is set explicitly by the user when the search is confirmed via our new button:
+Third, instead of running the data fetching side-effect on every `searchTerm` change (which happens each time the input field's value changes like we have seen before), the new stateful `url` is used whenever a user changes it by confirming a search request when clicking the button:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
@@ -87,8 +96,8 @@ const App = () => {
 # leanpub-start-insert
     fetch(url)
 # leanpub-end-insert
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         dispatchStories({
           type: 'STORIES_FETCH_SUCCESS',
           payload: result.hits,
@@ -109,11 +118,15 @@ const App = () => {
 };
 ~~~~~~~
 
-Before the `searchTerm` was used for two cases: updating the input field's state and activating the side-effect for fetching data. Too many responsibilities one may would have said. Now it's only used for the former. A second state called `url` got introduced for triggering the side-effect for fetching data which only happens when a user clicks the confirmation button.
+Before the `searchTerm` was used for two cases: updating the input field's state and activating the side-effect for fetching data. Now it's only used for the former. A second state called `url` got introduced for triggering the side-effect that fetches the data which only happens when a user clicks the confirmation button.
 
-### Ejercicios:
+### Exercises:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Explicit-Data-Fetching-with-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/Memoized-Handler-in-React...hs/Explicit-Data-Fetching-with-React?expand=1).
-* Why is `useState` instead of `useSemiPersistentState` used for the `url` state management?
-* Why is there no check for an empty `searchTerm` in the `handleFetchStories` function anymore?
+* Compare your source code against the author's [source code](https://bit.ly/3SkBAjX).
+  * Recap all the [source code changes from this section](https://bit.ly/3qVR29V).
+  * Optional: If you are using TypeScript, check out the author's source code [here](https://bit.ly/3Cf3ND9).
+* Question: Why is `useState` instead of `useStorageState` used for the `url` state management?
+  * Answer: We do not want to remember the `url` in the browser's local storage, because it's already derived from a static string (here: `API_ENDPOINT`) and the `searchTerm` which already comes from the browser's local storage.
+* Question: Why is there no check for an empty `searchTerm` in the `handleFetchStories` function anymore?
+  * Answer: Preventing a server-side search happens in the new button, because it gets disabled whenever there is no `searchTerm`.
+* Optional: [Leave feedback for this section](https://forms.gle/HuJDuVNZmEDbhGzU9).

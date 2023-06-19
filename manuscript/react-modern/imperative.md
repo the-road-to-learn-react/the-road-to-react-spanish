@@ -1,19 +1,45 @@
-## React Imperativo
+## Imperative React
 
-React es inherentemente declarativo, comienza con JSX y termina con hooks. En JSX, le decimos a React *qué* renderizar y no *cómo* renderizarlo. En un Hook de efecto secundario (useEffect), expresamos cuándo lograr *qué* en lugar de *cómo* lograrlo. Algunas veces, sin embargo, queremos acceder los elementos renderizados de JSX imperativamente, en casos como estos:
+React is inherently declarative. When you implement JSX, you tell React what elements you want to see, not how to create these elements. When you implement a hook for state, you tell React what you want to manage as a stateful value and not how to manage it. And when you implement an event handler, you do not have to assign a listener imperatively:
 
-* acceso de lectura/escritura a los elementos via DOM API:
-  * medir (leer) el ancho o alto de un elemento.
-  * establecer (escribir) el estado focus de un campo tipo input.
-* implementación de animaciones más complejas:
-  * configurar transiciones
-  * orquestar transiciones
-* integración de librerías de terceros:
-  * [D3](https://d3js.org/) es una librería de gráficas, imperativa y muy popular.
+{title="Code Playground",lang="javascript"}
+~~~~~~~
+// imperative JavaScript + DOM API
+element.addEventListener('click', () => {
+  // do something
+});
 
-Debido a que la programación imperativa en React es a menudo detallada y contraintuitiva, solo veremos un pequeño ejemplo para establecer el enfoque de un campo de entrada (input) de manera imperativa. Para la forma declarativa, simplemente configura el atributo autofocus del input:
+// declarative React
+const App = () => {
+  const handleClick = () => {
+    // do something
+  };
 
-{title="src/App.js",lang="javascript"}
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+    >
+      Click
+    </button>
+  );
+};
+~~~~~~~
+
+However, there are cases when we will not want everything to be declarative. For example, sometimes you want to have imperative access to rendered elements, most often as a side-effect, in cases such as these:
+
+* read/write access to elements via the DOM API:
+  * measuring (read) an element's width or height
+  * setting (write) an input field's focus state
+* implementation of more complex animations:
+  * setting transitions
+  * orchestrating transitions
+* integration of third-party libraries:
+  * [D3](https://d3js.org) is a popular imperative chart library
+
+Because imperative programming in React is often verbose and counterintuitive, we'll walk through only a small example for setting the focus of an input field imperatively. For the declarative way, simply set the input field's `autoFocus` attribute:
+
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const InputWithLabel = ({ ... }) => (
   <>
@@ -30,18 +56,23 @@ const InputWithLabel = ({ ... }) => (
     />
   </>
 );
+
+# leanpub-start-insert
+// note that `autoFocus` is a shorthand for `autoFocus={true}`
+// every attribute that is set to `true` can use this shorthand
+# leanpub-end-insert
 ~~~~~~~
 
-Esto funciona, pero solo si uno de los componentes reusables se renderiza una vez. Por ejemplo, si el componente App renderiza dos componentes InputWithLabel, solo el último componente renderizado recibe el auto-focus en su renderizado. Sin embargo, como tenemos un componente reusable aquí, podemos pasar una prop dedicada y dejar que el desarrollador decida si su elemento input debería tener auto-focus o no:
+This works, but only if one of the reusable components is rendered. For example, if the App component renders two InputWithLabel components, only the last rendered component receives the `autoFocus` feature on its render. However, since we have a reusable React component here, we can pass a dedicated prop which lets the developer decide whether the input field should have an active `autoFocus`:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const App = () => {
   ...
 
   return (
     <div>
-      <h1>Mis Historias de Hacker</h1>
+      <h1>My Hacker Stories</h1>
 
       <InputWithLabel
         id="search"
@@ -60,9 +91,9 @@ const App = () => {
 };
 ~~~~~~~
 
-Using just `isFocused` as an attribute is equivalent to `isFocused={true}`. Within the component, use the new prop for the input field's `autoFocus` attribute:
+Again, using just `isFocused` as an attribute is equivalent to `isFocused={true}`. Within the component, use the new prop for the input field's `autoFocus` attribute:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const InputWithLabel = ({
   id,
@@ -90,9 +121,9 @@ const InputWithLabel = ({
 );
 ~~~~~~~
 
-La implementación funciona, pero sigue siendo una implementación declarativa. Le estamos diciendo a React *qué* hacer y no *cómo* hacerlo. Aunque es posible hacerlo con el enfoque declarativo, refactoricemos este escenario a un enfoque imperativo. Queremos ejecutar el método `focus()` programáticamente a través de API DOM vía input una vez que ha sido renderizado:
+The feature works, yet it's a declarative implementation. We are telling React *what* to do and not *how* to do it. Even though it's possible to do it with the declarative approach (which is the recommended way), let's refactor this scenario to an imperative approach. We want to execute the `focus()` method programmatically on the input field's element via the DOM API once it has been rendered:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const InputWithLabel = ({
   id,
@@ -138,17 +169,23 @@ const InputWithLabel = ({
 };
 ~~~~~~~
 
-Todos los pasos esenciales están marcados con comentarios que son explicados paso a paso:
+All the essential steps are marked with comments that are explained step by step:
 
-* (A) Primero, crea un `ref` con el **hook useRef de React**. Este objeto `ref` es un valor persistente el cual se mantiene intacto durante el ciclo de vida del componente de React. Viene con una propiedad llamada `current`, la cual, en contraste con el objeto `ref`, puede ser modificado.
-* (B) Segundo, el `ref` is passed to the input field's JSX-reserved `ref` attribute and the element instance is assigned to the changeable `current` property.
-* (C) Third, opt into React's lifecycle with React's useEffect Hook, performing the focus on the input field when the component renders (or its dependencies change).
-* (D) And fourth, since the `ref` is passed to the input field's `ref` attribute, its `current` property gives access to the element. Execute its focus programmatically as a side-effect, but only if `isFocused` is set and the `current` property is existent.
+* (A) First, create a `ref` with **React's useRef Hook**. This `ref` object is a persistent value which stays intact over the lifetime of a React component. It comes with a property called `current`, which, in contrast to the `ref` object, can be changed.
+* (B) Second, the `ref` is passed to the element's JSX-reserved `ref` attribute and thus element instance gets assigned to the changeable `current` property.
+* (C) Third, opt into React's lifecycle with React's useEffect Hook, performing the focus on the element when the component renders (or its dependencies change).
+* (D) And fourth, since the `ref` is passed to the element's `ref` attribute, its `current` property gives access to the element. Execute its focus programmatically as a side-effect, but only if `isFocused` is set and the `current` property is existent.
 
-This was an example of how to move from declarative to imperative programming in React. It's not always possible to go the declarative way, so the imperative approach can be whenever it's necessary. This lesson is for the sake of learning about the DOM API in React.
+Essentially that's the whole example of how to move from declarative to imperative programming in React. In this case, it's possible to use either the declarative or imperative approach as you experienced first hand. However, it's not always possible to use the declarative approach, so the imperative approach can be performed whenever it's necessary. Since we didn't cover `ref` and `useRef` in much detail here, because it is a more rarely used feature in React, I suggest reading the additional article from the exercises for a more in-depth understanding.
 
-### Ejercicios
+### Exercises:
 
-* Confirma tu [código fuente de la última sección](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Imperative-React).
-  * Confirma los [cambios de la última sección](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/React-Component-Composition...hs/Imperative-React?expand=1).
-* Lee más acerca de [Hook useRef de React](https://reactjs.org/docs/hooks-reference.html#useref).
+* Compare your source code against the author's [source code](https://bit.ly/3dx5KRA).
+  * Recap all the [source code changes from this section](https://bit.ly/3S4mq25).
+  * Optional: If you are using TypeScript, check out the author's source code [here](https://bit.ly/3fpKxJR).
+* Read more about [refs in React](https://www.robinwieruch.de/react-ref/) and optionally check out the following tutorials which are using refs:
+  * [Create a Slider component with a ref](https://www.robinwieruch.de/react-slider/)
+  * [Create an image from a React component with a ref](https://www.robinwieruch.de/react-component-to-image/)
+  * [Create a custom hook with a ref](https://www.robinwieruch.de/react-custom-hook-check-if-overflow/)
+* Read more about [why frameworks matter](https://www.robinwieruch.de/why-frameworks-matter/).
+* Optional: [Leave feedback for this section](https://forms.gle/nABoW2tKAPd1yVkv7).

@@ -2,11 +2,36 @@
 
 To create a modern React application, we'll likely need to use SVGs. Instead of giving every button element text, for example, we might want to make it lightweight with an icon. In this section, we'll use a scalable vector graphic (SVG) as an icon in one of our React components.
 
-This section builds on the "CSS in React" we covered earlier, to give the SVG icon a good look and feel right away. It's acceptable to use a different styling approach, or no styling at all, though the SVG might look off without it.
+**Important:** This section builds on the "CSS in React" we covered earlier which helps us giving the SVG icon a good look and feel right away. It's acceptable to use a different styling approach (e.g. CSS Modules, Styled Components), or no styling at all, though the SVG might look off without it.
 
-This icon as SVG is taken from [Flaticon's Freepick](https://www.flaticon.com/authors/freepik). Many of the SVGs on this website are free to use, though they require you to mention the author. You can download the icon from [here](https://www.flaticon.com/free-icon/check_109748) as SVG and put it in your project as *src/check.svg*. Downloading the file is the recommended way, however, for the sake of completion, this is the verbose SVG definition:
+Vite does not come with SVG support. In order to allow SVGs in Vite, we have to install one of Vite's plugins with the help of the command line:
 
-{title="Code Playground",lang="html"}
+{title="Command Line",lang="text"}
+~~~~~~~
+npm install vite-plugin-svgr --save-dev
+~~~~~~~
+
+Next the new plugin for SVGs can be used for Vite's configuration:
+
+{title="src/App.jsx",lang="javascript"}
+~~~~~~~
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+# leanpub-start-insert
+import svgr from 'vite-plugin-svgr';
+# leanpub-end-insert
+
+// https://vitejs.dev/config/
+export default defineConfig({
+# leanpub-start-insert
+  plugins: [react(), svgr()],
+# leanpub-end-insert
+});
+~~~~~~~
+
+That's it for the general setup. The following icon as SVG is taken from [Flaticon's Freepick](https://bit.ly/3E16SEz). Many of the SVGs on this website are free to use, though they require you to mention the author. You can download the icon from [here](https://bit.ly/2Z2EoeA) as SVG and put it in your project as *src/check.svg*. Downloading the file is the recommended way, however, for the sake of completion, this is the verbose SVG definition:
+
+{title="src/check.svg",lang="html"}
 ~~~~~~~
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -23,25 +48,26 @@ This icon as SVG is taken from [Flaticon's Freepick](https://www.flaticon.com/au
 </svg>
 ~~~~~~~
 
-Because we're using create-react-app again , we can  import SVGs (similar to CSS) as React components right away. In *src/App.js*, use the following syntax for importing the SVG:
+Now we can import SVGs (similar to CSS) as React components right away. In *src/App.jsx*, use the following syntax for importing the SVG:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
-import React from 'react';
+import * as React from 'react';
 import axios from 'axios';
 
 import './App.css';
+
 # leanpub-start-insert
 import { ReactComponent as Check } from './check.svg';
 # leanpub-end-insert
 ~~~~~~~
 
-We are importing an SVG, and this works for many different uses for SVGs (e.g. logo, background). Instead of a button text, pass the SVG component with a `height` and `width` attribute:
+Here we are importing an SVG to be used as icon. However, this works for many different uses cases such as logos and backgrounds. Now, instead of the button "Dismiss" text, pass the SVG component with a `height` and `width` attribute:
 
-{title="src/App.js",lang="javascript"}
+{title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const Item = ({ item, onRemoveItem }) => (
-  <div className="item">
+  <li className="item">
     <span style={{ width: '40%' }}>
       <a href={item.url}>{item.title}</a>
     </span>
@@ -59,11 +85,11 @@ const Item = ({ item, onRemoveItem }) => (
 # leanpub-end-insert
       </button>
     </span>
-  </div>
+  </li>
 );
 ~~~~~~~
 
-Regardless of the styling approach you are using, you can give your SVG icon in the button a hover effect too. In the basic CSS approach, it would look like the following in the *src/App.css* file:
+Regardless of the styling approach you are using, you can give your SVG icon in the button a hover effect too, because right now it doesn't look right for the hover state. In the basic CSS approach, it would look like the following in the *src/App.css* file:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -73,13 +99,12 @@ Regardless of the styling approach you are using, you can give your SVG icon in 
 }
 ~~~~~~~
 
-The create-react-app project makes using SVGs straightforward, with no extra configuration needed. This is different if you create a React project from scratch with build tools like Webpack, because you have to take care of it yourself. Anyway, SVGs make your application more approachable, so use them whenever it suits you.
+The Vite plugin makes using SVGs straightforward, with not much extra configuration needed. This is different if you create a React project from scratch with build tools like Webpack, because you have to take care of it yourself. Anyway, SVGs make your application more approachable, so use them whenever it suits you.
 
-### Ejercicios:
+### Exercises:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-in-React-SVG).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/CSS-in-React...hs/CSS-in-React-SVG?expand=1).
-* Read more about [SVGs in create-react-app](https://create-react-app.dev/docs/adding-images-fonts-and-files).
-* Read more about [SVG background patterns in React](https://www.robinwieruch.de/react-svg-patterns).
+* Compare your source code against the author's [source code](https://bit.ly/3DNI6v5).
+  * Recap all the [source code changes from this section](https://bit.ly/3xLtOY6).
 * Add another SVG icon in your application.
-* Integrate the third-party library [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) into your application and use its SVG symbols.
+* Integrate the third-party library [react-icons](https://bit.ly/3nayoJ7) into your application and use its SVG symbols by importing them as React components right away.
+* Optional: [Leave feedback for this section](https://forms.gle/3yGgMDR2VQ5WksSXA).
