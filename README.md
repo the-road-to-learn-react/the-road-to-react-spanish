@@ -4,8 +4,8 @@ El repositorio oficial para [El Camino Hacia React](http://roadtoreact.com/). Si
 
 ## Actualizaciones, Ayuda y Soporte
 
-* Obtén actualizaciones vía [E-Mail](https://rwieruch.substack.com/) ó [Twitter](https://twitter.com/rwieruch)
-* Obtén ayuda, durante tu proceso de aprendizaje con el libro o mientras le enseñas a otros, en el [canal oficial de Slack](https://courses.robinwieruch.de/community-join)
+* Recibe actualizaciones vía [E-Mail](https://rwieruch.substack.com/) ó [Twitter](https://twitter.com/rwieruch)
+* Recibe ayuda, durante tu proceso de aprendizaje con el libro o mientras le enseñas a otros, en el [canal oficial de Slack](https://courses.robinwieruch.de/community-join)
 * Descubre como puedes [apoyar este libro](https://www.robinwieruch.de/about/)
 
 ## Contribuye
