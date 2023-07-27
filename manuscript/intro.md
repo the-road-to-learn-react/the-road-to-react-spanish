@@ -66,13 +66,13 @@ JavaScript enthusiasts with knowledge in other modern SPA frameworks: If you are
 
 If you are coming from another programming language, you should be more familiar than others with the different aspects of programming. After picking up the fundamentals of JavaScript and HTML, you should have a good time learning React with me.
 
-**Designers and UI/UX Enthusiasts**
+**Diseñadores y Entusiastas del UI/UX**
 
-If your main profession is in design, user interaction, or user experience, don't hesitate to pick up this book. You may be already quite familiar with HTML and CSS which is a plus. After going through some more JavaScript fundamentals, you should be good to get through this book. These days UI/UX is moving closer to the implementation details which are often taken care of with React. It would be your perfect asset to know how things work in code.
+Si tu profesión principal se encuentra en la rama del diseño, interacción con el usuario o experiencia de de usuario, no dudes en recurrir a este libro. Pueda que estes familiarizado con HTML y CSS lo cuál es un plus. Después de estudiar los fundamentos de JavaScript, deberías estar listo para este libro. En estos días UI/UX se están acercando cada vez más a la implementación de detalles que a menudo se gestionan con React. Este sería tu recurso perfecto para entender como todo funciona en el código.
 
-**Team Leads, Product Owners, or Product Managers**
+**Líderes de Equipo, Propietarios de Producto o Managers de Producto**
 
-If you are a team lead, product owner or product manager of your development department, this book should give you a good breakdown of all the essential parts of a React application. Every section explains one React concept/pattern/technique to add another feature or to improve the overall architecture. It's a well-rounded reference guide for React.
+Si eres un líder de proyecto, propietario de producto o manager de producto en tu departamento de desarrollo, este libro debería poder ofrecerte una explicación bastante completa de las partes que componen una aplicación React. Cada sección explica un concepto/patrón/técnica que añade una nueva característica o mejora la arquitectura en general. Este libro es una buena guía para entender React.
 
 ## ¿Cómo leer el libro?
 
