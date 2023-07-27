@@ -1,16 +1,16 @@
-# Styling in React
+# Estilos en React
 
-There are many ways to style a React application, and there are lengthy debates about the best **styling strategy** and **styling approach**. We'll go over a few of these strategies each representing one approach without giving them too much weight. There will be some pro and con arguments, but it's mostly a matter of what fits best for developers and their teams.
+Hay muchas maneras de aplicar estilos a una aplicación React, y hay debates extensos sobre cuál es la mejor  **estrategia** y **enfoque** para aplicar estilos. Vamos a revisar unas cuantas de esas estrategias, cada una representando un enfoque sin darle mucho peso. Habrán argumentos a favor y en contra, pero como siempre, es cuestión de qué se ajusta mejor al equipo de desarrolladores y sus equipos.
 
-We will begin React styling with common CSS in React, but then explore two alternatives for more advanced **CSS-in-CSS** (with **CSS Modules**) and **CSS-in-JS** (with s**Styled Components**) strategies. CSS Modules and Styled Components are only two approaches out of many in both groups of strategies. We'll also cover how to include scalable vector graphics (SVGs), such as a logo or icons, in our React application.
+Vamos a comenzar con el común CSS en React, pero después se van a explorar dos estrategias alternativas tales como **CSS-in-CSS** (con **Módulos CSS**) y **CSS-in-JS** (con **Styled Components**). Módulos CSS y Styled Components son dos enfoques entre muchos que pertenecen a ambos grupos de estrategias. También vamos a entender como se pueden incluir Gráficos Escalables de vectores (SVGs por sus siglas en Inglés), tales como un logo o ícono, en nuestra aplicación React.
 
 ![](images/css-style-strategies.png)
 
-If you don't want to build common UI components (e.g. button, dialog, dropdown) from scratch, you can always pick a [popular UI library suited for React](https://www.robinwieruch.de/react-libraries/), which provides these components by default. However, it is better for learning React if you try building these components before using a pre-built solution. As a result, we won't use any of the UI component libraries.
+Si no quieres construir componentes de UI comúnes (e.g. botón, diálogo, dropdown) desde 0, puedes utilizar una [librería de UI popular compatible con React](https://www.robinwieruch.de/react-libraries/), que brinda acceso a todos estos componentes por defecto. Sin embargo, para aprender React es mejor construir todos estos componentes en lugar de utilizar soluciones pre-construidas. Como resultado, no usaremos ninguna librería de componentes UI.
 
 ![](images/ui-library.png)
 
-The following styling approaches and SVGs are mostly pre-configured in Vite. If you're in control of the build tools (e.g. Webpack) by having a custom setup, they might need to be configured to enable importing CSS or SVG files. Since we are using Vite, we can use these files right away. For example, in your *src/main.jsx* file, make sure to import the *src/index.css* file:
+Los siguientes enfoques para aplicar estilos y SVGs, vienen todos pre-configurados en Vite. Si estás a cargo de configurar las herramientas de compilación (e.g. Webpack), estas deben ser configuradas para habilitar la importación de archivos CSS o SVG. Debido a que estamos utilizando Vite, podemos utilizar todos estos archivos sin necesidad de cambiar la configuración. Por ejemplo, en tu archivo *src/main.jsx*, asegúrate de importar el archivo *src/index.css*.
 
 {title="src/main.jsx",lang="javascript"}
 ~~~~~~~
@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 ~~~~~~~
 
-Use the following CSS in the *src/index.css* file for removing the margin and for using a standardized font with fallbacks:
+Usa el siguiente CSS dentro del archivo *src/index.css*, para remover el margen y usar una fuente común con fuentes secundarias de respaldo:
 
 {title="src/index.css",lang="css"}
 ~~~~~~~
@@ -43,17 +43,17 @@ body {
 }
 ~~~~~~~
 
-Essentially you can declare all the CSS that should apply globally for your project in this file.
+Esencialmente, en este archivo puedes declarar todo el CSS que necesitas aplicar a nivel global dentro de tu proyecto.
 
-### Exercises:
+### Ejercicios:
 
-* Compare your source code against the author's [source code](https://bit.ly/3xLnIXI).
-  * Recap all the [source code changes from this section](https://bit.ly/3f2gJ5U).
-* Read more about [the different styling strategies and approaches in React](https://www.robinwieruch.de/react-css-styling/).
+* Compara tu código con el del autor [código fuente](https://bit.ly/3xLnIXI).
+  * Revisita todos los [cambios del código fuente ocurridos en esta sección](https://bit.ly/3f2gJ5U).
+* Aprende más sobre [las distintas estrategias y enfoques de estilo en React](https://www.robinwieruch.de/react-css-styling/).
 
-## CSS in React
+## CSS en React
 
-Common CSS in React is similar to the standard CSS you may have already learned. Each web application gives HTML elements a `class` (in React it's `className`) attribute that is styled via a CSS file:
+El CSS en React común es muy similar al CSS estándar que ya debes haber aprendido. Cada elemento HTML en una aplicación web tiene un atributo `class` (`className` en React) que recibe los estilos por medio del archivo CSS:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -84,7 +84,7 @@ const App = () => {
 };
 ~~~~~~~
 
-The `<hr />` was removed because the CSS handles the border in the next steps. We'll import the CSS file, which is done with the help of how Vite resolves imports:
+Se removió el `<hr />` porque el CSS se encarga de gestionar el borde en el paso siguiente. Vamos a importar el archivo CSS, que se logra con la ayuda de Vite que viene ya configurado para gestionar las importaciones:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -96,7 +96,7 @@ import './App.css';
 # leanpub-end-insert
 ~~~~~~~
 
-This CSS file will define the two (and more) CSS classes we used (and will use) in the App component. In your *src/App.css* file, define them like the following:
+Este archivo CSS va a definir las dos (y más) clases de CSS que utilizamos (y seguiremos utilizando) dentro del componente App. En el archivo *src/App.css*, definelos de la siguiente manera:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -117,7 +117,7 @@ This CSS file will define the two (and more) CSS classes we used (and will use) 
 }
 ~~~~~~~
 
-You should see the first stylings taking effect in your application when you start it again. Next, we will head over to the Item component. Some of its elements receive the `className` attribute too, however, we are also using a new styling technique here:
+Al reiniciar la aplicación, ya deberías poder ver las primeras clases de estilo surgiendo efecto. A continuación, vamos al componente Item. Algunos de sus elementos también cuentan con el atributo `className`, sin embargo, vamos a utilizar una nueva técnica para aplicar los estilos aquí:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -148,9 +148,9 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-As you can see, we can also use the `style` attribute for HTML elements. In JSX, style can be passed as an inline JavaScript object to these attributes. This way we can define dynamic style properties in JavaScript files rather than mostly static CSS files. This approach is called **inline style**, which is useful for quick prototyping and dynamic style definitions. Inline style should be used sparingly, however, since a separate style definition with a CSS file keeps the JSX more concise.
+Como puedes ver, también se puede utilizar el atributo `style` para elementos HTML. En JSX, los estilos pueden ser asignados en línea como un objeto de JavaScript a dichos atributos. De esta forma, podemos definir propiedades dinámicas de estilo en archivos JavaScript en lugar de archivos CSS que son mayoritariamente estáticos. Este enfoque es conocido como **estilo en línea**, que es útil para prototipado rápido y definiciones de estilo dinámicas. Estilo en línea debería ser usado ocacionalmente, pero ten en cuenta, definir los estilos en un archivo CSS aparte, siempre da como resultado un JSX mas conciso.
 
-In your *src/App.css* file, define the new CSS classes. Basic CSS features are used here, because advanced CSS features (e.g. nesting) from CSS extensions (e.g. Sass) are not included in this example, as they are [optional configurations](https://bit.ly/3E1a2bM):
+En tu *src/App.css*, define las nuevas clases CSS. Características básicas de CSS son utilizadas acá, porque características avanzadas (e.g. Anidado) pertenecientes a extenciones de CSS (e.g. Sass) no se incluyen en este ejemplo, dado que representan [configuraciones opcionales](https://bit.ly/3E1a2bM):
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -173,7 +173,7 @@ In your *src/App.css* file, define the new CSS classes. Basic CSS features are u
 }
 ~~~~~~~
 
-The button style from the previous component is still missing, so we'll define a base button style and two more specific button styles (small and large). One of the button specifications has been already used, the other will be used in the next steps:
+El estilo perteneciente al botón presente en el componente anterior aún no está aquí, así que vamos a definir un estilo base para el botón y otras dos más específicas (small y large). Una de las especificaciones para el botón ya ha sido utilizada, la otra será utilizada en los pasos siguientes:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -200,7 +200,7 @@ The button style from the previous component is still missing, so we'll define a
 }
 ~~~~~~~
 
-Apart from styling approaches in React, naming conventions ([CSS guidelines](https://mzl.la/3m5avnb)) are a whole other topic. The last CSS snippet followed BEM rules by defining modifications of a class with an underscore (`_`). Choose whatever naming convention suits you and your team. Without further ado, we will style the next React component:
+Aparte de estos enfoques para aplicar estilos en React, las convenciones de nombrado ([Líneas directivas de CSS](https://mzl.la/3m5avnb)) representan otro tema aparte. El snippet de CSS anterior seguía reglas BEM, que definen modificaciones de una clase haciendo uso del guión bajo (`_`). Escoge cualquier convención de nombrado que se ajuste a ti y a tu equipo. Sin más que añadir, vamos a aplicar los estilos correspondientes al siguiente componente React:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -225,7 +225,7 @@ const SearchForm = ({ ... }) => (
 );
 ~~~~~~~
 
-We can also pass the `className` attribute as a prop to React components. For example, we can use this option to pass the SearchForm component a flexible style with a `className` prop from a range of predefined classes (e.g. `button_large` or `button_small`) from a CSS file. Lastly, style the InputWithLabel component:
+También podemos pasar el atributo `className` como una propiedad al componente React en cuestión. Por ejemplo, podemos usar esta opción para pasarle un estilo flexible al componente SearchForm  por medio de una propiedad `className` el cuál puede contener alguna de las clases predefinidas (e.g. `button_large` o `button_small`) en un archivo CSS aparte. Por último, aplica los estilos correspondientes al componente InputWithLabel:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -255,7 +255,7 @@ const InputWithLabel = ({ ... }) => {
 };
 ~~~~~~~
 
-In your *src/App.css* file, add the remaining classes:
+En el archivo *src/App.css*, añade las clases restantes:
 
 {title="src/App.css",lang="css"}
 ~~~~~~~
@@ -281,13 +281,13 @@ In your *src/App.css* file, add the remaining classes:
 }
 ~~~~~~~
 
-For simplicity, we styled elements like label and input individually in the *src/App.css* file. However, in a real application, it may be better to define these elements once in the *src/index.css* file globally. As React components are split into multiple files, sharing style becomes a necessity. After all, this is the basic usage of CSS in React. Without CSS extensions like Sass (Syntactically Awesome Style Sheets), styling can become more burdensome, though, because features like CSS nesting are not available in native CSS.
+Por simplicidad, aplicamos estilos a los elementos tales como label e input de forma individual en el archivo *src/App.css*. Sin embargo, en una aplicación real, sería mucho mejor definir estos elementos una sola vez de forma global en el archivo *src/index.css*. Dado que los componentes React pueden estar divididos en varios archviso, compartir estilos entre todos estos se convierte en una necesidad. Después de todo, esta es el objetivo principal de CSS en React. Sin extensiones de CSS tales como Sass (Syntactically Awesome Style Sheets), aplicar estilos puede ser mucho más complicado debido a que el CSS anidado no está disponible en CSS nativo.
 
-### Exercises:
+### Ejercicios:
 
-* Compare your source code against the author's [source code](https://bit.ly/3qZE0rQ).
-  * Recap all the [source code changes from this section](https://bit.ly/3R5s3M8).
-* Try to pass `className` prop from App to SearchForm component, either with the value `button_small` or `button_large`, and use this as `className` for the button element.
-* Read more about [CSS stylesheets in Vite](https://bit.ly/3S7peLJ).
-  * Read more about how to use Sass in Vite for taking advantage of more advanced CSS features like nesting.
-* Optional: [Leave feedback for this section](https://forms.gle/RovYbjYF9McD1h6c7).
+* Compara tu código con el del autor [código fuente](https://bit.ly/3qZE0rQ).
+  * Revisita todos los [cambios del código fuente ocurridos en esta sección](https://bit.ly/3R5s3M8).
+* Intenta pasar `className` como una propiedad, partiendo desde el componente App hasta llegar a SearchForm, ya sea asignando `button_small` o `button_large` como valor al `className` del elemento botón.
+* Lée más sobre [Hojas de estilo CSS en Vite](https://bit.ly/3S7peLJ).
+  * Lée más sobre como utilizar Sass en Vite para utilizar características avanzadas de CSS tales como el anidado.
+* Opcional: [Di lo que piensas sobre esta sección](https://forms.gle/RovYbjYF9McD1h6c7).

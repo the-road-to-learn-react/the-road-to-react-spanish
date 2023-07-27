@@ -54,17 +54,17 @@ Quiero enseñar sobre este tema de forma consistente. A menudo encuentro materia
 
 Principiantes en JavaScript con fundamentos de  JS, CSS y HTML: Si estas iniciando en el desarrollo web y tienes el conocimiento básico de JS, CSS y HTML, este libro debería proveerte todo lo necesario para aprender React. Sin embargo, si sientes que hay una brecha en tus conocimientos de JavaScript, no dudes en leer sobre ese tema antes de continuar con el libro. Ten en cuenta también que se abordaran muchos de los fundamentos de JavaScript a lo largo de este libro.
 
-**JavaScript Veterans**
+**Expertos de JavaScript**
 
-JavaScript veterans coming from jQuery: If you have used JavaScript with jQuery, MooTools, and Dojo extensively back in the days, the new JavaScript era may seem overwhelming for someone getting back on track with it. However, most of the fundamental knowledge didn't change, it's still JavaScript and HTML under the hood, so this book should give you the right start into React.
+Los expertos de JavaScript que han venido utilizando jQuery: Si has utilizado JavaScript con jQuery, MooTools, y Dojo en el pasado, la nueva era de JavaScript podría resultarte algo abrumadora al momento de ponerte al día con los nuevos cambios. Sin embargo, la mayoría del conocimiento fundamental no cambió, todavía se trata de JavaScript y HTML debajo del capó, este libro debería ponerte en la ruta correcta para iniciar con React.
 
-**JavaScript Enthusiasts**
+**Entusiastas de JavaScript**
 
-JavaScript enthusiasts with knowledge in other modern SPA frameworks: If you are coming from Angular or Vue, there may be lots of differences in how to write applications with React, however, all these frameworks share the same fundamentals of JavaScript and HTML. After a mindset shift to get comfortable with React, you should be doing just fine adopting React.
+Los entusiastas de JavaScript que ya sepan utilizar otros frameworks SPA: Si has utilizado Angular o Vue, encontrarás muchas diferencias con respecto a la manera en que se escriben las aplicaciones con React, sin embargo, todos estos frameworks comparten los principios fundamentales de JavaScript y HTML. Después de reajustar tu mente y ponerte cómodo con React, deberías ser capáz de adoptar esta tecnología.
 
-**Non-JavaScript Developers**
+**Desarrolladores en otros lenguages**
 
-If you are coming from another programming language, you should be more familiar than others with the different aspects of programming. After picking up the fundamentals of JavaScript and HTML, you should have a good time learning React with me.
+Si vienes de otro lenguage de programación, deberías estar más que familiarizado que otros con los diferentes aspectos de la programación. Después de estudiar los fundamentos de JavaScript y HTML, deberías poder entender fácilmente como funciona React junto a mi.
 
 **Diseñadores y Entusiastas del UI/UX**
 

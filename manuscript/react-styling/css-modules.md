@@ -1,13 +1,13 @@
-## CSS Modules in React
+## Módulos CSS en React
 
-CSS Modules are an advanced **CSS-in-CSS** approach. The CSS file stays the same, where you could apply CSS extensions like Sass, but its use in React components changes. To enable CSS modules in Vite, rename the *src/App.css* file to *src/App.module.css*. This action is performed on the command line from your project's directory:
+Los módulos CSS en React, son un enfoque **CSS-in-CSS** avanzado. El archivo CSS se mantiene igual, en el cuál puedes aplicar extensiones CSS tales como Sass, pero su uso dentro de componentes React cambia. Para habilitar módulos CSS en Vite, renombra el archivo *src/App.css** a *src/App.module.css*. Esta acción se puede realizarr desde la línea de comando, partiendo de la raíz del directorio de tu proyecto:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 mv src/App.css src/App.module.css
 ~~~~~~~
 
-In the renamed *src/App.module.css*, start with the first CSS class definitions, as before:
+Dentro del archivo renombrado *src/App.module.css*, realiza las primeras definiciones de clases de CSS, tal como antes:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -28,7 +28,7 @@ In the renamed *src/App.module.css*, start with the first CSS class definitions,
 }
 ~~~~~~~
 
-Import the *src/App.module.css* file with a relative path again. This time, import it as a JavaScript object where the name of the object (here: `styles`) is up to you:
+Importa el archivo *src/App.module.css*, nuevamente utilizando una ruta relativa. Esta vez, importalo como un objeto de JavaScript, donde puedes asignar nombre del objeto (aquí: `styles`) que tu quieras:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -40,7 +40,7 @@ import styles from './App.module.css';
 # leanpub-end-insert
 ~~~~~~~
 
-Instead of defining the `className` as a string mapped to a CSS file, access the CSS class directly from the `styles` object, and assign it with a JavaScript in JSX expression to your elements.
+En vez de definir la propiedad `className` como una cadena de texto mapeada a un archivo CSS, accede a la clase CSS directamente desde el objeto `styles`, y asignalo a tus elementos por medio de una expresión "JavaScript en JSX".
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -71,8 +71,7 @@ const App = () => {
 };
 ~~~~~~~
 
-There are various ways to add multiple CSS classes via the `styles` object to the element's single `className` attribute. Here, we use JavaScript template literals:
-
+Por medio del uso de Plantillas Literales de JavaScript, se pueden añadir multiples clases CSS utilizando el objeto styles dentro del atribruto `className` que es uno por cada elemento:
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
 const Item = ({ item, onRemoveItem }) => (
@@ -102,7 +101,7 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-We can also add inline styles as more dynamic styles in JSX again. It's also possible to add a CSS extension like Sass to enable advanced features like CSS nesting (see the previous section). We will stick to native CSS features though:
+Utilizando JSX, también se pueden añadir estilos en línea de forma más dinámica. Además, es posible añadir una extensión CSS tal como Sass para habilitar funcionalidades avanzadas tales como Anidación de Selectores CSS (ver sección anterior). Pero por ahora, nos quedamos con opciones nativas de CSS:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -125,7 +124,7 @@ We can also add inline styles as more dynamic styles in JSX again. It's also pos
 }
 ~~~~~~~
 
-Then the button CSS classes in the *src/App.module.css* file:
+Entonces, las clases CSS del botón en el archivo *src/App.module.css*:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -152,7 +151,7 @@ Then the button CSS classes in the *src/App.module.css* file:
 }
 ~~~~~~~
 
-There is a shift toward pseudo BEM naming conventions here, in contrast to `button_small` and `button_large` from the previous section. If the previous naming convention holds true, we can only access the style with `styles['button_small']` which makes it more verbose because of  JavaScript's limitation with object underscores. The same shortcomings would apply for classes defined with a dash (`-`). In contrast, now we can use `styles.buttonSmall` instead (see: Item component):
+Aquí se comienza a adoptar una convención de nombres pseudo BEM, en contraste a los `button_small` y `button_large` vistos en la sección anterior. Si la convención de nombres anterior se mantiene, solo podremos acceder al estilo utilizando notación de brackets  `styles['button_small']`, lo que nos obligaría a ser más específicos debido a la limitación que tiene JavaScript con respecto al caractér guión bajo. Las mismas limitaciones aplican para clases definidas usando guión (`-`). Para contrarrestar esto, ahora podemos utilizar `styles.buttonSmall` en su lugar (ver: Item component):
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -177,7 +176,7 @@ const SearchForm = ({ ... }) => (
 );
 ~~~~~~~
 
-The SearchForm component receives the styles as well. It has to use string interpolation for using two styles in one element via JavaScript's template literals. One alternative way is the [clsx](https://bit.ly/3DNEA3R) library, which is installed via the command line as a project dependency:
+El componente SearchForm recibe los estilos también. Tiene que utilizar interpolación de cadenas de texto para poder aplicar dos estilos dentro de un elemento por medio de las plantillas literales de JavaScript. Una alternativa es la librería [clsx](https://bit.ly/3DNEA3R), que se instala vía línea de comando como una dependencia del projecto:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -189,7 +188,7 @@ import clsx from 'clsx';
 className={clsx(styles.button, styles.buttonLarge)}
 ~~~~~~~
 
-The library offers conditional styling too; whereas the left-hand side of the object's property must be used as a [computed property name](https://mzl.la/2XuN651) and is only applied if the right-hand side evaluates to true:
+La librería también ofrece estilos condicionales; donde el lado izquierdo de la propiedad del objeto, debe ser usasdo como un [nombre de propiedad computado](https://mzl.la/2XuN651) y solo se aplica si el lado derecho es evaluado como verdadero:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -201,7 +200,7 @@ import clsx from 'clsx';
 className={clsx(styles.button, { [styles.buttonLarge]: isLarge })}
 ~~~~~~~
 
-Finally, continue with the InputWithLabel component:
+Finalmente, continua con el componente InputWithLabel:
 
 {title="src/App.jsx",lang="javascript"}
 ~~~~~~~
@@ -231,7 +230,7 @@ const InputWithLabel = ({ ... }) => {
 };
 ~~~~~~~
 
-And finish up the remaining style in the *src/App.module.css* file:
+Y completa el resto de estilos en el archivo *src/App.module.css*
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -257,13 +256,13 @@ And finish up the remaining style in the *src/App.module.css* file:
 }
 ~~~~~~~
 
-The same caution as the last section applies: some of these styles like `input` and `label` might be more efficient in a global *src/index.css* file without CSS modules.
+Aquí también aplica la misma precaución que en la sección anterior: Algunos de estos estilos tales como `input` y `label` podrían ser más eficientes estando dentro de un archivo global *src/index.css* sin necesidad de módulos CSS.
 
-Again, CSS Modules -- like any other CSS-in-CSS approach -- can use Sass for more advanced CSS features like nesting. The advantage of CSS modules is that we receive an error in  JavaScript each time a style isn't defined. In the standard CSS approach, unmatched styles in JavaScript and CSS files might go unnoticed.
+De nuevo, los Módulos CSS -- tal como cualquier otro enfoque CSS-in-CSS -- podrían utilizar Sass para tener acceso a opciones más avanzadas tales como la anidación de selectores. La ventaja que ofrecen los módulos CSS es que estos reciben un error de JavaScript cada vez que un estilo no ha sido definido. En el enfoque estándard de CSS, estilos inexistentes JavaScript y archivos CSS podrían pasar desapercibidos. 
 
 ### Exercises:
 
-* Compare your source code against the author's [source code](https://bit.ly/3xM1HYw).
-  * Recap all the [source code changes from this section](https://bit.ly/3dxsZLz).
-* Read more about [CSS Modules in Vite](https://bit.ly/3S7peLJ).
-* Optional: [Leave feedback for this section](https://forms.gle/iuU7WaeJVwHN2pFCA).
+* Compara tu código con el del autor [código fuente](https://bit.ly/3xM1HYw).
+  * Revisita todos los [cambios del código fuente ocurridos en esta sección](https://bit.ly/3dxsZLz).
+* Lee más sobre [CSS Modules en Vite](https://bit.ly/3S7peLJ).
+* Opcional: [Di lo que piensas sobre esta sección](https://forms.gle/iuU7WaeJVwHN2pFCA).
