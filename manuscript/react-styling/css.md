@@ -288,6 +288,6 @@ Por simplicidad, aplicamos estilos a los elementos tales como label e input de f
 * Compara tu código con el del autor [código fuente](https://bit.ly/3qZE0rQ).
   * Revisita todos los [cambios del código fuente ocurridos en esta sección](https://bit.ly/3R5s3M8).
 * Intenta pasar `className` como una propiedad, partiendo desde el componente App hasta llegar a SearchForm, ya sea asignando `button_small` o `button_large` como valor al `className` del elemento botón.
-* Lée más sobre [Hojas de estilo CSS en Vite](https://bit.ly/3S7peLJ).
-  * Lée más sobre como utilizar Sass en Vite para utilizar características avanzadas de CSS tales como el anidado.
-* Opcional: [Di lo que piensas sobre esta sección](https://forms.gle/RovYbjYF9McD1h6c7).
+* Lee más sobre [Hojas de estilo CSS en Vite](https://bit.ly/3S7peLJ).
+  * Lee más sobre como utilizar Sass en Vite para utilizar características avanzadas de CSS tales como el anidado.
+* Opcional: [Déjanos saber lo que piensas sobre esta sección](https://forms.gle/RovYbjYF9McD1h6c7).

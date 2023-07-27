@@ -265,4 +265,4 @@ De nuevo, los Módulos CSS -- tal como cualquier otro enfoque CSS-in-CSS -- podr
 * Compara tu código con el del autor [código fuente](https://bit.ly/3xM1HYw).
   * Revisita todos los [cambios del código fuente ocurridos en esta sección](https://bit.ly/3dxsZLz).
 * Lee más sobre [CSS Modules en Vite](https://bit.ly/3S7peLJ).
-* Opcional: [Di lo que piensas sobre esta sección](https://forms.gle/iuU7WaeJVwHN2pFCA).
+* Opcional: [Déjanos saber lo que piensas sobre esta sección](https://forms.gle/iuU7WaeJVwHN2pFCA).
